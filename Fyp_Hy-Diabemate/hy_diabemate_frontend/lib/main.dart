@@ -99,15 +99,15 @@ class _MyAppState extends State<MyApp>{
                         shadowColor:Colors.grey,
                         borderOnForeground: true,
                         child:ListTile(
-                          trailing:IconButton(
-                            onPressed: ()=> Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder:(context)=> About(),
-                              ),
-                            ),
-                            icon: Icon(Icons.apps_rounded),
-                          ),
+                          // trailing:IconButton(
+                          //   onPressed: ()=> Navigator.push(
+                          //     context,
+                          //     MaterialPageRoute(
+                          //       builder:(context)=> About(),
+                          //     ),
+                          //   ),
+                          //   icon: Icon(Icons.apps_rounded),
+                          // ),
                           title: Text(
                             "About App",
                             style: TextStyle(
