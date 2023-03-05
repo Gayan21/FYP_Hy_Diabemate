@@ -1,115 +1,307 @@
 import 'package:flutter/material.dart';
+import 'package:hy_diabemate_frontend/About.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MyApp(),
+    )
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+// ignore: avoid_init_to_null
+var result = null;
+var pregnant;
+var glucose;
+var bloodpressure;
+var skin;
+var insulin;
+var mass;
+var diabetes;
+var age;
 
+
+
+class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+  _MyAppState createState() => _MyAppState();
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
+class _MyAppState extends State<MyApp>{
+  ag()  async{
+    var r = await http.get(
+    Uri.http(
+      "192.168.99.100",
+      "cgi-bin/diabetes.py",
+      {
+        "pregnant": pregnant,
+        "glucose": glucose,
+        "bloodpressure": bloodpressure,
+        "skin": skin,
+        "insulin": insulin,
+        "mass": mass,
+        "diabetes": diabetes,
+        "age": age
+      },
+    ),
+  );
+  setState(() {
+    result = r.body;
+  });
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+      floatingActionButton: CircleAvatar(
+        backgroundColor: Colors.white,
+        child: Center(
+          child: IconButton(
+            mouseCursor:MouseCursor.defer,
+            iconSize: 29.0,
+            onPressed: ag,
+            icon: Icon(
+              Icons.search,
+              color: Colors.black,
+              size: 30.0,
+            ), 
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+      appBar: AppBar(
+        backgroundColor: Colors.blueAccent,
+        leading: CircleAvatar(
+          backgroundColor: Colors.transparent,
+          child: IconButton(
+            alignment: Alignment.topLeft,
+            onPressed: () => showDialog(
+              context: context,
+              builder: (BuildContext context) => SimpleDialog(
+                backgroundColor: Colors.white,
+                title: Text(
+                  "Diabetes Predictor",
+                  style: TextStyle(
+                    letterSpacing: 1.0,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 26.0,
+                    fontFamily: "courier new",
+
+                  ),
+                ),
+                //                        About 
+                children: [  
+                  Column(
+                    children: [
+                      Card(
+                        color: Colors.blueAccent,
+                        shadowColor:Colors.grey,
+                        borderOnForeground: true,
+                        child:ListTile(
+                          trailing:IconButton(
+                            onPressed: ()=> Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:(context)=> About(),
+                              ),
+                            ),
+                            icon: Icon(Icons.apps_rounded),
+                          ),
+                          title: Text(
+                            "About App",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              fontFamily: "courier new,"
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            icon: Icon(
+              Icons.contacts,
+              color: Colors.black,
+              size: 35.0,
+            ),
+          ),
+        ),
+        title: Center(
+          child: Text(
+            "Diabetes prediction",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: "courier new",
+              fontSize: 35.0,
+            ),
+          ),
+        ),
+      ),
+
+        //                     BODY 
+      body: Container(
+        color: Colors.white30,
+        child: StreamBuilder<Object>(
+          stream: null,
+          builder: (context, snapshot) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                    //                               RESULT(output)
+                  Text(
+                      // ignore: unnecessary_brace_in_string_interps
+                    "Result: ${result}",
+                      style: TextStyle(
+                        decoration: TextDecoration.underline,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "courier new",
+                        fontSize:20.0,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    Expanded(
+                      child: SafeArea(
+                        child: ListView(
+                          children: [
+                            Card(
+                              color: Colors.white38,
+                              child: TextField(
+                                keyboardType:
+                                TextInputType.numberWithOptions(decimal:true ) ,
+                                onChanged: (pg) => pregnant = pg ,
+                                style: TextStyle(
+                                  fontFamily: "courier new",
+                                  fontSize:24.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                                decoration: InputDecoration(hintText: "Number of time pregnant"),
+                              ),
+                            ),
+                            Card(
+                              color: Colors.blueGrey,
+                              child: TextField(
+                                keyboardType: 
+                                TextInputType.numberWithOptions(decimal: true),
+                                onChanged: (gl) => glucose = gl,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "courier new",
+                                  fontSize: 24.0,
+                                ),
+                                decoration:
+                                InputDecoration(hintText: "Glucose Concentration" ),
+                              ),
+                            ),
+                            Card(
+                              color: Colors.blueGrey,
+                              child: TextField(
+                                keyboardType: 
+                                TextInputType.numberWithOptions(decimal: true),
+                                onChanged: (bp) => bloodpressure = bp,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "courier new",
+                                  fontSize: 24.0,
+                                ),
+                                decoration:
+                                InputDecoration(hintText: "Diastolic Blood Pressure(mm Hg)" ),
+                              ),
+                            ),
+                              Card(
+                              color: Colors.blueGrey,
+                              child: TextField(
+                                keyboardType: 
+                                TextInputType.numberWithOptions(decimal: true),
+                                onChanged: (sk) => skin = sk,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "courier new",
+                                  fontSize: 24.0,
+                                ),
+                                decoration:
+                                InputDecoration(hintText: "Tricep skin fold thickness (mm)" ),
+                              ),
+                            ),
+                            Card(
+                              color: Colors.blueGrey,
+                              child: TextField(
+                                keyboardType: 
+                                TextInputType.numberWithOptions(decimal: true),
+                                onChanged: (il) => insulin = il,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "courier new",
+                                  fontSize: 24.0,
+                                ),
+                                decoration:
+                                InputDecoration(hintText: "2-Hour Serum insulin(mu U/ml)" ),
+                              ),
+                            ),
+                            Card(
+                              color: Colors.blueGrey,
+                              child: TextField(
+                                keyboardType: 
+                                TextInputType.numberWithOptions(decimal: true),
+                                onChanged: (ma) => mass = ma,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "courier new",
+                                  fontSize: 24.0,
+                                ),
+                                decoration:
+                                InputDecoration(hintText: "Body mass index" ),
+                              ),
+                            ),
+                            Card(
+                              color: Colors.blueGrey,
+                              child: TextField(
+                                keyboardType: 
+                                TextInputType.numberWithOptions(decimal: true),
+                                onChanged: (db) => diabetes = db,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "courier new",
+                                  fontSize: 24.0,
+                                ),
+                                decoration:
+                                InputDecoration(hintText: "Body mass index" ),
+                              ),
+                            ),
+                            Card(
+                              color: Colors.blueGrey,
+                              child: TextField(
+                                keyboardType: 
+                                TextInputType.numberWithOptions(decimal: true),
+                                onChanged: (ag) => age = ag,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: "courier new",
+                                  fontSize: 24.0,
+                                ),
+                                decoration:InputDecoration(hintText: "Age" ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+            );
+          }
+        ),
+        ),
+      );
   }
 }
