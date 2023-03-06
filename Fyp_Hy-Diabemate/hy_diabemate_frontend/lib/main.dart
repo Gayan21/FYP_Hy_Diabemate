@@ -8,6 +8,7 @@ void main() {
   runApp(
     MaterialApp(
       debugShowCheckedModeBanner: false,
+      
       home: MyApp(),
     )
   );
@@ -57,6 +58,7 @@ class _MyAppState extends State<MyApp>{
 
   Widget build(BuildContext context) {
     return Scaffold(
+      //  backgroundColor: Colors.green,
       floatingActionButton: CircleAvatar(
         backgroundColor: Colors.white,
         child: Center(
@@ -73,7 +75,7 @@ class _MyAppState extends State<MyApp>{
         ),
       ),
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
+         backgroundColor: Colors.greenAccent,
         leading: CircleAvatar(
           backgroundColor: Colors.transparent,
           child: IconButton(
@@ -83,7 +85,7 @@ class _MyAppState extends State<MyApp>{
               builder: (BuildContext context) => SimpleDialog(
                 backgroundColor: Colors.white,
                 title: Text(
-                  "Diabetes Predictor",
+                  "Hy-Diabemate",
                   style: TextStyle(
                     letterSpacing: 1.0,
                     fontWeight: FontWeight.bold,
@@ -134,7 +136,7 @@ class _MyAppState extends State<MyApp>{
         ),
         title: Center(
           child: Text(
-            "Diabetes prediction",
+            "Hy-Diabemate",
             style: TextStyle(
               fontWeight: FontWeight.bold,
               fontFamily: "courier new",
