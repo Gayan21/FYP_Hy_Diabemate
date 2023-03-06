@@ -86,6 +86,7 @@ class _MyAppState extends State<MyApp>{
                 backgroundColor: Colors.white,
                 title: Text(
                   "Hy-Diabemate",
+                   
                   style: TextStyle(
                     letterSpacing: 1.0,
                     fontWeight: FontWeight.bold,
@@ -139,8 +140,8 @@ class _MyAppState extends State<MyApp>{
             "Hy-Diabemate",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontFamily: "courier new",
-              fontSize: 35.0,
+              fontFamily: "Satisfy",
+              fontSize: 30.0,
             ),
           ),
         ),
