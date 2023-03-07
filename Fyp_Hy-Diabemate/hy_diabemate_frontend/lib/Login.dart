@@ -42,7 +42,7 @@ class _LoginDemoState extends State<Login> {
                     /*decoration: BoxDecoration(
                         color: Colors.red,
                         borderRadius: BorderRadius.circular(50.0)),*/
-                    child: Image.asset('assets/images/d.jpeg')),
+                    child: Image.asset('lib/assets/images/diabetes.png')),
               ),
             ),
             Padding(
