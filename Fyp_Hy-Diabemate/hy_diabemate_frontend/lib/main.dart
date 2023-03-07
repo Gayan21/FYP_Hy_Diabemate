@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:hy_diabemate_frontend/About.dart';
 import 'package:http/http.dart' as http;
 
+import 'Login.dart';
+
 void main() {
   runApp(
     MaterialApp(
@@ -108,7 +110,7 @@ class _MyAppState extends State<MyApp>{
                             onPressed: ()=> Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder:(context)=> About(),
+                                builder:(context)=> Login(),
                               ),
                             ),
                             icon: Icon(Icons.apps_rounded),

@@ -28,6 +28,7 @@ class _LoginDemoState extends State<Login> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text("Login Page"),
+        backgroundColor: Colors.greenAccent,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -82,7 +83,7 @@ class _LoginDemoState extends State<Login> {
               height: 50,
               width: 250,
               decoration: BoxDecoration(
-                  color: Colors.blue, borderRadius: BorderRadius.circular(20)),
+                  color: Colors.greenAccent, borderRadius: BorderRadius.circular(20)),
               child: FlatButton(
                 onPressed: () {
                   // Navigator.push(
