@@ -88,6 +88,25 @@ class Profile extends StatelessWidget {
                 //   _launchURL('mailto:fadcrepin@gmail.com?subject=Need Flutter developer&body=Please contact me');
                 // },
               ),
+                Container(  
+              margin: EdgeInsets.all(25),  
+              child: FlatButton(  
+                child: Text('Edit Details', style: TextStyle(fontSize: 20.0),),  
+                color: Colors.blueAccent,  
+                textColor: Colors.white,  
+                onPressed: () {},  
+              ),  
+            ),  
+            Container(  
+              margin: EdgeInsets.all(25),  
+              child: FlatButton(  
+                child: Text('Log Out', style: TextStyle(fontSize: 20.0),),  
+                color: Colors.blueAccent,  
+                textColor: Colors.white,  
+                onPressed: () {},  
+              ),  
+            ),  
+
             ],
           ),
         ),
