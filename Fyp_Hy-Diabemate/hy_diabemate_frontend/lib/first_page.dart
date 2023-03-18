@@ -30,14 +30,14 @@ class First_Page extends StatelessWidget {
               border: Border.all(color: Colors.black, width: 2.0),
               image: DecorationImage(
                 image: NetworkImage(
-                    "https://aihubprojects.com/wp-content/uploads/2021/04/diab.jpg"),
+                    "https://livingwithamplitude.com/wp-content/uploads/2021/11/november-3-diabetes-awareness-1024x972.jpg"),
               ),
             ),
           ),
           Container(
             padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
             child: Text(
-              "Diabetes Predictor will help you find if you have diabetes or not",
+              "help you to overcome the diabetese risk",
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontFamily: "courier new",
