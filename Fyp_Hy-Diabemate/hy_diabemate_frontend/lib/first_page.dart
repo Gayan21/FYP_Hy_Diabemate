@@ -39,10 +39,12 @@ class First_Page extends StatelessWidget {
           Container(
             padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
             child: Text(
-              "help you to overcome the diabetese risk",
+              "Help you to overcome the diabetese risk",
+               textAlign: TextAlign.center,
               style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontFamily: "courier new",
+                
+               
+                
                 fontSize: 26.0,
               ),
             ),
