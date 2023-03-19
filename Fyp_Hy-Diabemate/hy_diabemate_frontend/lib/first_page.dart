@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Login_screen.dart';
+
 
 
 class First_Page extends StatelessWidget {
@@ -55,7 +57,13 @@ class First_Page extends StatelessWidget {
               color: Colors.greenAccent, 
               textColor: Colors.white, 
               child: new Text("Get Started"), 
-              onPressed: () => {}, 
+              onPressed: () {
+                Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) =>  Login())
+     
+               );
+              
+              }, 
               splashColor: Colors.redAccent,
               )
             
