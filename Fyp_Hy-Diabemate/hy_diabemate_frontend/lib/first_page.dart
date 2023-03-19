@@ -44,6 +44,22 @@ class First_Page extends StatelessWidget {
                 fontSize: 26.0,
               ),
             ),
+            
+            
+          ),
+          Container(
+            padding:  EdgeInsets.all(15),  
+            child: MaterialButton( 
+              height: 40.0, 
+              minWidth: 40.0, 
+              color: Colors.greenAccent, 
+              textColor: Colors.white, 
+              child: new Text("Get Started"), 
+              onPressed: () => {}, 
+              splashColor: Colors.redAccent,
+              )
+            
+            
           ),
       
         ]
