@@ -9,12 +9,12 @@ class First_Page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.blueAccent,
+        backgroundColor: Colors.greenAccent,
         title: Text(
-          "first page",
+          "First page",
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontFamily: "courier new",
+            // fontFamily: "courier new",
             fontSize: 35.0,
           ),
         ),
