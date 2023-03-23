@@ -32,7 +32,7 @@ class History_page extends StatelessWidget {
           ,  
         ),  
        body: ListView(
-          children: const <Widget>[
+          children: [
             SizedBox(
               width: 200.0,
             height: 100.0,
@@ -58,8 +58,32 @@ class History_page extends StatelessWidget {
               
               title: Text('Phone'),
             ),
+             Container(
+            padding:  EdgeInsets.all(15),  
+            child: MaterialButton( 
+              height: 40.0, 
+              minWidth: 40.0, 
+              color: Colors.greenAccent, 
+              textColor: Colors.white, 
+              child: new Text("View Report"), 
+              onPressed: () {
+                Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) =>  History_page())
+     
+               );
+              
+              }, 
+              splashColor: Colors.redAccent,
+              )
+            
+            
+          ),
+            
+         
           ],
+          
         ),
+        
       ),  
     );  
   }  
