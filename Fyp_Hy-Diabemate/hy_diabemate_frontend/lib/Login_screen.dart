@@ -1,7 +1,8 @@
 
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 import 'package:flutter/material.dart';
 // import 'HomePage.dart';
+import 'Prediction_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -86,14 +87,21 @@ class _Login_Demo_State extends State<Login> {
               width: 250,
               decoration: BoxDecoration(
                   color: Colors.greenAccent, borderRadius: BorderRadius.circular(20)),
+              // ignore: deprecated_member_use
               child: FlatButton(
                 onPressed: () {
-                  // Navigator.push(
-                  //     context, MaterialPageRoute(builder: (_) => HomePage()));
+                   
+                Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) =>  Prediction_page())
+     
+               );
+              
+             
                 },
                 child: Text(
                   'Login',
                   style: TextStyle(color: Colors.white, fontSize: 25),
+                  
                 ),
               ),
             ),
