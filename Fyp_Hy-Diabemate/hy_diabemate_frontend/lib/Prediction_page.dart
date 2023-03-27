@@ -305,6 +305,29 @@ class _MyAppState extends State<Prediction_page>{
                                 decoration:InputDecoration(hintText: "Age" ),
                               ),
                             ),
+                            Container(
+                                height: 50,
+                                width: 250,
+                                decoration: BoxDecoration(
+                                    color: Colors.greenAccent, borderRadius: BorderRadius.circular(20)),
+                                // ignore: deprecated_member_use
+                                child: FlatButton(
+                                  onPressed: () {
+                                    
+                                  Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) =>  About())
+                      
+                                );
+                                
+                              
+                                  },
+                                  child: Text(
+                                    'Predict',
+                                    style: TextStyle(color: Colors.white, fontSize: 25),
+                                    
+                                  ),
+                                ),
+                              ),
                           ],
                         ),
                       ),
