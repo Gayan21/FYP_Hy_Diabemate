@@ -116,7 +116,7 @@ class _MyAppState extends State<Prediction_page>{
                             onPressed: ()=> Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder:(context)=> About(),
+                                builder:(context)=> Profile(),
                               ),
                             ),
                             icon: Icon(Icons.apps_rounded),
