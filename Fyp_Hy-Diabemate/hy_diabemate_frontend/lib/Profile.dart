@@ -10,6 +10,17 @@ class Profile extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+        backgroundColor: Colors.greenAccent,
+        title: Text(
+          "Profile",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: "courier new",
+            fontSize: 35.0,
+          ),
+        ),
+      ),
         backgroundColor: Colors.teal,
         body: SafeArea(
           child: Column(
