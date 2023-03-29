@@ -29,9 +29,12 @@ class About extends StatelessWidget {
             decoration: BoxDecoration(
               color: Colors.black87,
               border: Border.all(color: Colors.black, width: 2.0),
+               // Image.asset
               image: DecorationImage(
-                image: NetworkImage(
-                    "https://aihubprojects.com/wp-content/uploads/2021/04/diab.jpg"),
+                image: new AssetImage("lib/assets/images/result.png"),
+              fit: BoxFit.fill,
+                // image: NetworkImage(
+                //     "https://www.flaticon.com/free-icon/type_9031996"),
               ),
             ),
           ),
