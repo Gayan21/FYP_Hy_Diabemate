@@ -166,7 +166,9 @@ class _MyAppState extends State<Prediction_page>{
           
           backgroundColor: Colors.transparent,
           child: IconButton(
+            padding: EdgeInsets.all(5),
             alignment: Alignment.topLeft,
+          // color: Colors.white,
             onPressed: () => showDialog(
               context: context,
               builder: (BuildContext context) => SimpleDialog(
@@ -216,8 +218,9 @@ class _MyAppState extends State<Prediction_page>{
               ),
             ),
             icon: Icon(
+              
               Icons.contacts,
-              color: Colors.black,
+              color: Colors.white,
               size: 35.0,
             ),
           ),
