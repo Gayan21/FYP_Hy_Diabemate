@@ -72,7 +72,8 @@ class _MyAppState extends State<Prediction_page>{
         child: Center(
           child: IconButton(
             mouseCursor:MouseCursor.defer,
-            iconSize: 29.0,
+            alignment: Alignment.topRight,
+            iconSize: 2.0,
             onPressed: ag,
             icon: Icon(
               Icons.search,
@@ -84,7 +85,85 @@ class _MyAppState extends State<Prediction_page>{
       ),
       appBar: AppBar(
          backgroundColor: Colors.greenAccent,
-        leading: CircleAvatar(
+         leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+
+        // leading : CircleAvatar(
+          
+        //   backgroundColor: Colors.transparent,
+        //   child: IconButton(
+        //     alignment: Alignment.topLeft,
+        //     onPressed: () => showDialog(
+        //       context: context,
+        //       builder: (BuildContext context) => SimpleDialog(
+        //         backgroundColor: Colors.white,
+        //         title: Text(
+        //           "Hy-Diabemate",
+                   
+        //           style: TextStyle(
+        //             letterSpacing: 1.0,
+        //             fontWeight: FontWeight.bold,
+        //             fontSize: 26.0,
+        //             fontFamily: "courier new",
+
+        //           ),
+        //         ),
+        //         //                        About 
+        //         children: [  
+        //           Column(
+        //             children: [
+        //               Card(
+        //                 color: Colors.blueAccent,
+        //                 shadowColor:Colors.grey,
+        //                 borderOnForeground: true,
+        //                 child:ListTile(
+        //                   trailing:IconButton(
+        //                     onPressed: ()=> Navigator.push(
+        //                       context,
+        //                       MaterialPageRoute(
+        //                         builder:(context)=> Profile(),
+        //                       ),
+        //                     ),
+        //                     icon: Icon(Icons.apps_rounded),
+        //                   ),
+        //                   title: Text(
+        //                     "About App",
+        //                     style: TextStyle(
+        //                       fontWeight: FontWeight.bold,
+        //                       fontSize: 20.0,
+        //                       fontFamily: "courier new,"
+        //                     ),
+        //                   ),
+        //                 ),
+        //               ),
+        //             ],
+        //           )
+        //         ],
+        //       ),
+        //     ),
+        //     icon: Icon(
+        //       Icons.contacts,
+        //       color: Colors.black,
+        //       size: 35.0,
+        //     ),
+        //   ),
+        // ),
+        title: Center(
+          child: Text(
+            "Hy-Diabemate",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: "Satisfy",
+              fontSize: 30.0,
+            ),
+          ),
+        ),
+        actions: [
+        
+    CircleAvatar(
+          
           backgroundColor: Colors.transparent,
           child: IconButton(
             alignment: Alignment.topLeft,
@@ -143,16 +222,7 @@ class _MyAppState extends State<Prediction_page>{
             ),
           ),
         ),
-        title: Center(
-          child: Text(
-            "Hy-Diabemate",
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontFamily: "Satisfy",
-              fontSize: 30.0,
-            ),
-          ),
-        ),
+  ],
       ),
 
         //                     BODY 
