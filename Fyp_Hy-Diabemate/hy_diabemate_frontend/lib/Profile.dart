@@ -31,7 +31,7 @@ class Profile extends StatelessWidget {
             children: <Widget>[
               CircleAvatar(
                 radius: 50.0,
-                backgroundImage: AssetImage('images/fadcrepin.jpg'),
+                backgroundImage: AssetImage('lib/assets/images/profile.png'),
               ),
               Text(
                 'Crépin Fadjo',
@@ -127,7 +127,7 @@ class Profile extends StatelessWidget {
               margin: EdgeInsets.all(25),  
               child: FlatButton(  
                 child: Text('Edit Details', style: TextStyle(fontSize: 20.0),),  
-                color: Colors.blueAccent,  
+                color: Colors.greenAccent,  
                 textColor: Colors.white,  
                 onPressed: () {},  
               ),  
@@ -136,7 +136,7 @@ class Profile extends StatelessWidget {
               margin: EdgeInsets.all(25),  
               child: FlatButton(  
                 child: Text('Log Out', style: TextStyle(fontSize: 20.0),),  
-                color: Colors.blueAccent,  
+                color: Colors.greenAccent,  
                 textColor: Colors.white,  
                 onPressed: () {},  
               ),  
