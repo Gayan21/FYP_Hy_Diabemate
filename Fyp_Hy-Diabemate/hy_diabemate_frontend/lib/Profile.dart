@@ -12,6 +12,9 @@ class Profile extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
         backgroundColor: Colors.greenAccent,
+         leading: BackButton(
+     color: Colors.white
+   ), 
         title: Text(
           "Profile",
           style: TextStyle(
@@ -21,7 +24,7 @@ class Profile extends StatelessWidget {
           ),
         ),
       ),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
