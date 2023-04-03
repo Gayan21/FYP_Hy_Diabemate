@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hy_diabemate_frontend/Login_screen.dart';
 // import 'package:url_launcher/url_launcher.dart';
 
 void main() {
@@ -30,34 +31,58 @@ class Profile extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              CircleAvatar(
-                radius: 50.0,
+              Padding(
+
+   padding: const EdgeInsets.all(5),
+   child: Column(
+     mainAxisSize: MainAxisSize.min,
+     
+     children: [
+       CircleAvatar(
+        radius: 50.0,
                 backgroundImage: AssetImage('lib/assets/images/profile.png'),
-              ),
-              Text(
+       ),
+       SizedBox(height: 10),
+       Container(
+        //  width: 100,
+         child: Text(
                 'Crépin Fadjo',
                 style: TextStyle(
-                  fontSize: 30.0,
+                  fontSize: 20.0,
                   fontFamily: 'Pacifico',
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
+                  color: Colors.black
                 ),
               ),
+       )
+    ]
+  )
+),
+              // CircleAvatar(
+              //   radius: 50.0,
+              //   backgroundImage: AssetImage('lib/assets/images/profile.png'),
+              // ),
               // Text(
-              //   'Flutter Developer'.toUpperCase(),
+              //   'Crépin Fadjo',
               //   style: TextStyle(
-              //     fontSize: 20.0,
-              //     fontFamily: 'SourceSansPro',
-              //     color: Colors.teal.shade100,
+              //     fontSize: 30.0,
+              //     fontFamily: 'Pacifico',
               //     fontWeight: FontWeight.bold,
-              //     letterSpacing: 2.5,
+              //     color: Colors.black
               //   ),
               // ),
+              // 
               SizedBox(
                 height: 20.0,
-                width: 150,
+                width: 400,
                 child: Divider(
-                  color: Colors.teal.shade100,
+                  
+                  height: 20,
+            thickness: 2,
+            indent: 20,
+            endIndent: 20,
+           color: Colors.teal.shade100,
+                  
                 ),
               ),
               InkWell(
@@ -160,10 +185,10 @@ class Profile extends StatelessWidget {
               child: FlatButton(
                 onPressed: () {
                    
-      //           Navigator.of(context).push(
-      // MaterialPageRoute(builder: (context) =>  Prediction_page())
+                Navigator.of(context).push(
+      MaterialPageRoute(builder: (context) =>  Login())
      
-      //          );
+               );
               
              
                 },
