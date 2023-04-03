@@ -13,6 +13,7 @@ class Profile extends StatelessWidget {
         appBar: AppBar(
         backgroundColor: Colors.greenAccent,
          leading: BackButton(
+           onPressed: () => Navigator.of(context).pop(),
      color: Colors.white
    ), 
         title: Text(
@@ -123,24 +124,56 @@ class Profile extends StatelessWidget {
                 //   _launchURL('mailto:fadcrepin@gmail.com?subject=Need Flutter developer&body=Please contact me');
                 // },
               ),
-                Container(  
-              margin: EdgeInsets.all(25),  
-              child: FlatButton(  
-                child: Text('Edit Details', style: TextStyle(fontSize: 20.0),),  
-                color: Colors.greenAccent,  
-                textColor: Colors.white,  
-                onPressed: () {},  
-              ),  
-            ),  
-            Container(  
-              margin: EdgeInsets.all(25),  
-              child: FlatButton(  
-                child: Text('Log Out', style: TextStyle(fontSize: 20.0),),  
-                color: Colors.greenAccent,  
-                textColor: Colors.white,  
-                onPressed: () {},  
-              ),  
-            ),  
+                 Container(
+              height: 50,
+              width: 250,
+              decoration: BoxDecoration(
+                  color: Colors.greenAccent, borderRadius: BorderRadius.circular(20)),
+              // ignore: deprecated_member_use
+              child: FlatButton(
+                onPressed: () {
+                   
+      //           Navigator.of(context).push(
+      // MaterialPageRoute(builder: (context) =>  Prediction_page())
+     
+      //          );
+              
+             
+                },
+                child: Text(
+                  'Edit Details',
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                  
+                ),
+              ),
+            ),
+            SizedBox(
+      height: 50, // <-- SEE HERE
+    ),
+            Container(
+              padding: EdgeInsets.all(10),
+              height: 50,
+              width: 250,
+              decoration: BoxDecoration(
+                  color: Colors.greenAccent, borderRadius: BorderRadius.circular(20)),
+              // ignore: deprecated_member_use
+              child: FlatButton(
+                onPressed: () {
+                   
+      //           Navigator.of(context).push(
+      // MaterialPageRoute(builder: (context) =>  Prediction_page())
+     
+      //          );
+              
+             
+                },
+                child: Text(
+                  'Log Out',
+                  style: TextStyle(color: Colors.white, fontSize: 25),
+                  
+                ),
+              ),
+            ),
 
             ],
           ),
