@@ -378,29 +378,54 @@ class _MyAppState extends State<Prediction_page>{
                                 decoration:InputDecoration(hintText: "Age" ),
                               ),
                             ),
-                            Container(
-                                height: 50,
-                                width: 250,
-                                decoration: BoxDecoration(
-                                    color: Colors.greenAccent, borderRadius: BorderRadius.circular(20)),
-                                // ignore: deprecated_member_use
-                                child: FlatButton(
-                                  onPressed: () {
-                                    
-                                  Navigator.of(context).push(
+                            ListTile(
+          title: Row(
+            children: <Widget>[
+              Expanded(child: RaisedButton(onPressed: () {},child: Text("Reset"),color: Colors.black,textColor: Colors.white,
+              shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            
+          ))
+              ) ,
+              SizedBox(width: 10,),
+              Expanded(child: RaisedButton(onPressed: () {
+                 Navigator.of(context).push(
                         MaterialPageRoute(builder: (context) =>  About())
                       
                                 );
+              },
+              
+             child: Text("Predict"),color: Colors.greenAccent,textColor: Colors.white,
+             shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+            
+          ))),
+            ],
+          ),
+        )
+                        //     Container(
+                        //         height: 50,
+                        //         width: 250,
+                        //         decoration: BoxDecoration(
+                        //             color: Colors.greenAccent, borderRadius: BorderRadius.circular(20)),
+                        //         // ignore: deprecated_member_use
+                        //         child: FlatButton(
+                        //           onPressed: () {
+                                    
+                        //           Navigator.of(context).push(
+                        // MaterialPageRoute(builder: (context) =>  About())
+                      
+                        //         );
                                 
                               
-                                  },
-                                  child: Text(
-                                    'Predict',
-                                    style: TextStyle(color: Colors.white, fontSize: 25),
+                        //           },
+                        //           child: Text(
+                        //             'Predict',
+                        //             style: TextStyle(color: Colors.white, fontSize: 25),
                                     
-                                  ),
-                                ),
-                              ),
+                        //           ),
+                        //         ),
+                        //       ),
                           ],
                         ),
                       ),
