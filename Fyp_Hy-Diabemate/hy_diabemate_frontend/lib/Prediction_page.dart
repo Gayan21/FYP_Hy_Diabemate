@@ -42,6 +42,10 @@ class Prediction_page extends StatefulWidget {
 }
 
 class _MyAppState extends State<Prediction_page>{
+   var pregnant = TextEditingController();
+  // final TextEditingController pregnant = new TextEditingController();
+  // final TextEditingController pregnant = new TextEditingController();
+  // final TextEditingController pregnant = new TextEditingController();
   ag()  async{
     var r = await http.get(
     Uri.http(
@@ -263,15 +267,21 @@ class _MyAppState extends State<Prediction_page>{
                             Card(
                               color: Colors.white38,
                               child: TextField(
+                                controller: pregnant,
                                 keyboardType:
                                 TextInputType.numberWithOptions(decimal:true ) ,
-                                onChanged: (pg) => pregnant = pg ,
+                                // onChanged: (pg) => pregnant = pg ,
                                 style: TextStyle(
                                   fontFamily: "courier new",
                                   fontSize:24.0,
                                   fontWeight: FontWeight.bold,
                                 ),
-                                decoration: InputDecoration(hintText: "Number of time pregnant"),
+                                decoration: InputDecoration(hintText: "Number of time pregnant",
+                                suffixIcon: IconButton(
+      onPressed: pregnant.clear,
+      icon: Icon(Icons.clear),
+    ),
+                                ),
                               ),
                             ),
                             Card(
@@ -381,7 +391,29 @@ class _MyAppState extends State<Prediction_page>{
                             ListTile(
           title: Row(
             children: <Widget>[
-              Expanded(child: RaisedButton(onPressed: () {},child: Text("Reset"),color: Colors.black,textColor: Colors.white,
+              Expanded(child: RaisedButton(onPressed: () {
+        //         "pregnant": pregnant,
+        // "glucose": glucose,
+        // "bloodpressure": bloodpressure,
+        // "skin": skin,
+        // "insulin": insulin,
+        // "mass": mass,
+        // "diabetes": diabetes,
+        // "age": age
+                // _formKey.currentState.reset();
+                setState(() {
+                    pregnant.clear();
+              glucose.clear();
+              bloodpressure.clear();
+             bloodpressure.clear();
+              skin.clear();
+              insulin.clear();
+             mass.clear();
+              diabetes.clear();
+                  
+                });
+            
+              },child: Text("Reset"),color: Colors.black,textColor: Colors.white,
               shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
             
