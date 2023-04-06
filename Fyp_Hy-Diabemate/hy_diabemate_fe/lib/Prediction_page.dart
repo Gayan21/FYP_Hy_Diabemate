@@ -414,6 +414,10 @@ class _MyAppState extends State<Prediction_page>{
                 });
             
               },child: Text("Reset"),
+                style: ElevatedButton.styleFrom(
+    primary: Colors.black, // Background color
+    onPrimary: Colors.white, // Text Color (Foreground color)
+  ),
           //     color: Colors.black,
           //     textColor: Colors.white,
           //     shape: RoundedRectangleBorder(
@@ -431,6 +435,10 @@ class _MyAppState extends State<Prediction_page>{
               },
               
              child: Text("Predict"),
+             style: ElevatedButton.styleFrom(
+    primary: Colors.greenAccent, // Background color
+    onPrimary: Colors.white, // Text Color (Foreground color)
+  ),
           //    color: Colors.greenAccent,textColor: Colors.white,
           //    shape: RoundedRectangleBorder(
           //   borderRadius: BorderRadius.circular(20),
