@@ -3,24 +3,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
 
-class AuthService with ChangeNotifier {
-  var currentUser;
+class AuthService  {
+  String ? userName;
+  String ? userPwd;
 
-  AuthService() {
-    print("new AuthService");
-  }
 
-  Future getUser() {
-    return Future.value(currentUser);
-  }
-
-  // wrappinhg the firebase calls
-  Future logout() {
-    this.currentUser = null;
-    notifyListeners();
-    return Future.value(currentUser);
-  }
-
+//  DocumentReference documentReference;
+AuthService({required this.userName,required this.userPwd});
+ 
+ toJson(){
+  return {'userName': userName , 'userPwd': userPwd};
+ }
   // wrapping the firebase calls
   // Future createUser(
   //     {String firstName,
