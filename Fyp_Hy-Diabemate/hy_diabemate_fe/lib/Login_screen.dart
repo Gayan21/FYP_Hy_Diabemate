@@ -1,6 +1,8 @@
 
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:hy_diabemate_fe/Models/user_details.dart';
 // import 'HomePage.dart';
 import 'Prediction_page.dart';
 
@@ -20,11 +22,48 @@ class MyApp extends StatelessWidget {
 }
 
 class Login extends StatefulWidget {
+ Login() :super();
+
+
+
+
   @override
   _Login_Demo_State createState() => _Login_Demo_State();
 }
 
 class _Login_Demo_State extends State<Login> {
+  TextEditingController userName = TextEditingController();
+  TextEditingController userPwd = TextEditingController();
+ bool isEditing =false;
+ bool  textFieldVisibility =false;
+
+ String firestoreCollectionName = "Users";
+
+late  AuthService authService;
+
+ getAllUsers(){
+  return FirebaseFirestore.instance.collection(firestoreCollectionName).snapshots();
+ }
+
+ addUser() async {
+  AuthService authService = AuthService(userName: userName.text, userPwd : userPwd.text);
+
+try{
+  FirebaseFirestore.instance.runTransaction((transaction) async {
+    await FirebaseFirestore.instance
+    .collection(firestoreCollectionName)
+    .doc()
+    .set(authService.toJson());
+  });
+
+}
+catch(e)
+{
+print(e.toString());
+}
+
+ }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
