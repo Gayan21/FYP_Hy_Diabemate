@@ -19,6 +19,7 @@ class _CreateAccountState extends State<CreateAccount> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Create Account'),
+        backgroundColor: Colors.greenAccent,
         centerTitle: true,
       ),
       body: Center(
@@ -29,7 +30,8 @@ class _CreateAccountState extends State<CreateAccount> {
               width: MediaQuery.of(context).size.width / 2,
               child: TextField(
                 controller: _emailController,
-                decoration: const InputDecoration(hintText: 'Email'),
+                decoration: const InputDecoration(hintText: 'Email',
+                border: OutlineInputBorder()),
               ),
             ),
             const SizedBox(
@@ -42,6 +44,7 @@ class _CreateAccountState extends State<CreateAccount> {
                 obscureText: true,
                 decoration: const InputDecoration(
                   hintText: 'Password',
+                  border: OutlineInputBorder()
                 ),
               ),
             ),
@@ -49,6 +52,9 @@ class _CreateAccountState extends State<CreateAccount> {
               height: 30.0,
             ),
             ElevatedButton(
+              style: ElevatedButton.styleFrom(
+    primary: Colors.greenAccent, // Background color
+  ),
               onPressed: () async {
                 final message = await AuthService().registration(
                   email: _emailController.text,
