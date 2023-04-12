@@ -186,7 +186,7 @@ class Profile extends StatelessWidget {
                 onPressed: () {
                    
                 Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) =>  Login())
+      MaterialPageRoute(builder: (context) =>  LoginScreen())
      
                );
               
