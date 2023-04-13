@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hy_diabemate_fe/History_page.dart';
+import 'package:hy_diabemate_fe/test.dart';
 
 import 'Login_screen.dart';
 
@@ -9,8 +10,10 @@ class First_Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(57, 7, 204, 178),
       appBar: AppBar(
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Color.fromARGB(255, 74, 102, 95),
+        centerTitle: true,
         title: Text(
           "First page",
           style: TextStyle(
@@ -53,21 +56,33 @@ class First_Page extends StatelessWidget {
             
           ),
           Container(
-            padding:  EdgeInsets.all(15),  
-            child: MaterialButton( 
-              height: 40.0, 
-              minWidth: 40.0, 
-              color: Colors.greenAccent, 
-              textColor: Colors.white, 
+            width: 50,
+            padding:  EdgeInsets.all(55),  
+            child: ElevatedButton( 
+            
+              style:  ElevatedButton.styleFrom(
+    primary: Colors.greenAccent, 
+    shape: RoundedRectangleBorder(
+                      side: const BorderSide(
+                              width: 2, // thickness
+                              color: Colors.white // color
+                      ),
+                      // border radius
+                      borderRadius: BorderRadius.circular(16) 
+              )// Background color
+  ),
+      
+      
+   
               child: new Text("Get Started"), 
               onPressed: () {
                 Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) =>  Login())
+      MaterialPageRoute(builder: (context) =>  LoginScreen())
      
                );
               
               }, 
-              splashColor: Colors.redAccent,
+              // splashColor: Colors.redAccent,
               )
             
             
