@@ -177,9 +177,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(57, 7, 204, 178),
       appBar: AppBar(
         title: const Text('Login'),
-        backgroundColor: Colors.greenAccent,
+       backgroundColor: Color.fromARGB(255, 74, 102, 95),
         centerTitle: true,
       ),
       body: Center(
@@ -198,12 +199,18 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
            
             SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
+              width: 300,
+              // width: MediaQuery.of(context).size.width / 2,
               child: TextField(
                 
                 controller: _emailController,
-                decoration: const InputDecoration(hintText: 'Email',
-                border: OutlineInputBorder()),
+                decoration:  InputDecoration(hintText: 'Email',
+                enabledBorder: OutlineInputBorder(
+                  borderSide:
+          BorderSide(width: 3, color: Colors.greenAccent), //<-- SEE HERE
+      borderRadius: BorderRadius.circular(50.0),
+                ),
+                ),
                   
               ),
             ),
@@ -211,13 +218,18 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 30.0,
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
+              width: 300,
+              // width: MediaQuery.of(context).size.width / 2,
               child: TextField(
                 controller: _passwordController,
                 obscureText: true,
-                decoration: const InputDecoration(
+                decoration:  InputDecoration(
                   hintText: 'Password',
-                   border: OutlineInputBorder(),
+                   enabledBorder: OutlineInputBorder(
+                     borderSide:
+          BorderSide(width: 3, color: Colors.greenAccent), //<-- SEE HERE
+      borderRadius: BorderRadius.circular(50.0),
+                   ),
                 ),
               ),
             ),
