@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "751308680941",
+    "firebase_url": "https://hydiabematetest-default-rtdb.firebaseio.com",
+    "project_id": "hydiabematetest",
+    "storage_bucket": "hydiabematetest.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:751308680941:android:09718955254bd66e1266e4",
+        "android_client_info": {
+          "package_name": "com.example.hy_diabemate_fe"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "751308680941-nribtisk7i1j4el9lcsee7veopvcbmfg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0XcymG8vs_MKhZaU-t9tKT0acpH7mxas"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "751308680941-nribtisk7i1j4el9lcsee7veopvcbmfg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
