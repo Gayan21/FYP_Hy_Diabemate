@@ -17,10 +17,18 @@ class _CreateAccountState extends State<CreateAccount> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(57, 7, 204, 178),
       appBar: AppBar(
-        title: const Text('Create Account'),
-        backgroundColor: Colors.greenAccent,
+         title: Text(
+          "Hy-Diabemate",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: "Satisfy",
+            fontSize: 35.0,
+          ),
+        ),
         centerTitle: true,
+         backgroundColor: Color.fromARGB(255, 74, 102, 95),
       ),
       body: Center(
         child: Column(
