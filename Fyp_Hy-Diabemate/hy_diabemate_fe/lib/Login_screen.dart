@@ -179,7 +179,15 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       backgroundColor: Color.fromARGB(57, 7, 204, 178),
       appBar: AppBar(
-        title: const Text('Login'),
+        // title: const Text('Login'),
+         title: Text(
+          "Hy-Diabemate",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: "Satisfy",
+            fontSize: 35.0,
+          ),
+        ),
        backgroundColor: Color.fromARGB(255, 74, 102, 95),
         centerTitle: true,
       ),

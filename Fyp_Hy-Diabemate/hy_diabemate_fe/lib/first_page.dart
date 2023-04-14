@@ -15,10 +15,10 @@ class First_Page extends StatelessWidget {
         backgroundColor: Color.fromARGB(255, 74, 102, 95),
         centerTitle: true,
         title: Text(
-          "First page",
+          "Hy-Diabemate",
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            // fontFamily: "courier new",
+            fontFamily: "Satisfy",
             fontSize: 35.0,
           ),
         ),
