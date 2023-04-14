@@ -12,21 +12,21 @@ class Profile extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-        backgroundColor: Colors.greenAccent,
+          backgroundColor: Color.fromARGB(255, 74, 102, 95),
          leading: BackButton(
            onPressed: () => Navigator.of(context).pop(),
      color: Colors.white
    ), 
-        title: Text(
-          "Profile",
+         title: Text(
+          "Hy-Diabemate",
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontFamily: "courier new",
+            fontFamily: "Satisfy",
             fontSize: 35.0,
           ),
         ),
       ),
-        backgroundColor: Colors.white,
+        backgroundColor: Color.fromARGB(57, 7, 204, 178),
         body: SafeArea(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,

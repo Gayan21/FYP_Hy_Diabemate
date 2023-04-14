@@ -3,6 +3,7 @@ import 'package:hy_diabemate_fe/About.dart';
 import 'package:http/http.dart' as http;
 import 'package:hy_diabemate_fe/first_page.dart';
 import 'Profile.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'Login_screen.dart';
 
@@ -43,6 +44,14 @@ class Prediction_page extends StatefulWidget {
 
 class _MyAppState extends State<Prediction_page>{
    var pregnant = TextEditingController();
+   _launchURLBrowser() async {
+    const url = 'http://192.168.1.104:8501';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
   // final TextEditingController pregnant = new TextEditingController();
   // final TextEditingController pregnant = new TextEditingController();
   // final TextEditingController pregnant = new TextEditingController();
@@ -70,6 +79,7 @@ class _MyAppState extends State<Prediction_page>{
 
   Widget build(BuildContext context) {
     return Scaffold(
+       backgroundColor: Color.fromARGB(57, 7, 204, 178),
       //  backgroundColor: Colors.green,
       floatingActionButton: CircleAvatar(
         backgroundColor: Colors.white,
@@ -88,7 +98,7 @@ class _MyAppState extends State<Prediction_page>{
         ),
       ),
       appBar: AppBar(
-         backgroundColor: Colors.greenAccent,
+         backgroundColor: Color.fromARGB(255, 74, 102, 95),
          leading: IconButton(
           icon: Icon(Icons.arrow_back, color: Colors.white),
           onPressed: () => Navigator.of(context).pop(),
@@ -234,7 +244,7 @@ class _MyAppState extends State<Prediction_page>{
 
         //                     BODY 
       body: Container(
-        color: Colors.white30,
+        // color: Colors.white30,
         child: StreamBuilder<Object>(
           stream: null,
           builder: (context, snapshot) {
@@ -427,12 +437,15 @@ class _MyAppState extends State<Prediction_page>{
           )
               ) ,
               SizedBox(width: 10,),
-              Expanded(child: ElevatedButton(onPressed: () {
-                 Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) =>  About())
+              Expanded(child: ElevatedButton(
+               onPressed: _launchURLBrowser,
+              //onPressed: () {
+              //   //  Navigator.of(context).push(
+              //   //         MaterialPageRoute(builder: (context) =>  About())
                       
-                                );
-              },
+              //   //                 );
+                 
+              // },
               
              child: Text("Predict"),
              style: ElevatedButton.styleFrom(
