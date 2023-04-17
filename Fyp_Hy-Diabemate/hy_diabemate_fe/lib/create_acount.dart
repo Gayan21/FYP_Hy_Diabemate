@@ -34,12 +34,24 @@ class _CreateAccountState extends State<CreateAccount> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            SizedBox( 
+              child:Text("Create Account",
+               style: TextStyle(color: Color.fromARGB(255, 241, 231, 231),fontSize: 40),
+               )),
+            const SizedBox(
+              height: 30.0,
+            ),
             SizedBox(
               width: MediaQuery.of(context).size.width / 2,
               child: TextField(
                 controller: _emailController,
-                decoration: const InputDecoration(hintText: 'Email',
-                border: OutlineInputBorder()),
+                decoration:  InputDecoration(hintText: 'Email',
+                enabledBorder: OutlineInputBorder(
+                   borderSide:
+          BorderSide(width: 3, color: Colors.greenAccent), //<-- SEE HERE
+      borderRadius: BorderRadius.circular(50.0),
+                ),
+                ),
               ),
             ),
             const SizedBox(
@@ -50,9 +62,13 @@ class _CreateAccountState extends State<CreateAccount> {
               child: TextField(
                 controller: _passwordController,
                 obscureText: true,
-                decoration: const InputDecoration(
+                decoration:  InputDecoration(
                   hintText: 'Password',
-                  border: OutlineInputBorder()
+                  enabledBorder: OutlineInputBorder(
+                     borderSide:
+          BorderSide(width: 3, color: Colors.greenAccent), //<-- SEE HERE
+      borderRadius: BorderRadius.circular(50.0),
+                  )
                 ),
               ),
             ),
