@@ -46,6 +46,7 @@ class First_Page extends StatelessWidget {
               "Help you to overcome the diabetese risk",
                textAlign: TextAlign.center,
               style: TextStyle(
+                 color: Colors.white,
                 
                
                 
