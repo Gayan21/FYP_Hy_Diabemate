@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:hy_diabemate_fe/Profile.dart';
 
 class dummy extends StatefulWidget {
   @override
@@ -63,12 +64,106 @@ class _DiabetesPredictorState extends State<dummy> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: AppBar(
-        title: Text('Diabetes Predictor'),
+        
+                 backgroundColor: Color.fromARGB(255, 74, 102, 95),
+         leading: IconButton(
+          icon: Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+
+
+        title: Center(
+          child: Text(
+            "Hy-Diabemate",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: "Satisfy",
+              fontSize: 30.0,
+            ),
+          ),
+        ),
+        actions: [
+        
+    CircleAvatar(
+          
+          backgroundColor: Colors.transparent,
+          child: IconButton(
+            padding: EdgeInsets.all(5),
+            alignment: Alignment.topLeft,
+          // color: Colors.white,
+            onPressed: () => showDialog(
+              context: context,
+              builder: (BuildContext context) => SimpleDialog(
+                backgroundColor: Colors.white,
+                title: Text(
+                  "Hy-Diabemate",
+                   
+                  style: TextStyle(
+                    letterSpacing: 1.0,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 26.0,
+                    fontFamily: "courier new",
+
+                  ),
+                ),
+                //                        About 
+                children: [  
+                  Column(
+                    children: [
+                      Card(
+                        // color: Colors.blueAccent,
+                        // shadowColor:Colors.grey,
+                        borderOnForeground: true,
+                        child:ListTile(
+                          trailing:IconButton(
+                            onPressed: ()=> Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder:(context)=> Profile(),
+                              ),
+                            ),
+                            icon: Icon(Icons.apps_rounded),
+                          ),
+                          title: Text(
+                            "About App",
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              fontFamily: "courier new,"
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+            icon: Icon(
+              
+              Icons.contacts,
+              color: Colors.white,
+              size: 35.0,
+            ),
+          ),
+        ),
+  ],
       ),
       body: SingleChildScrollView(
+        child:Container(
+           color: Color.fromARGB(61, 64, 165, 131),
         child: Column(
+          
           children: [
+           SizedBox( 
+              child:Text("Diabetic  Predictor",
+               style: TextStyle(color: Color.fromARGB(255, 12, 8, 8),fontSize: 25),
+               )),
+            const SizedBox(
+              height: 30.0,
+            ),
             Padding(
               padding: EdgeInsets.all(16),
               child: TextField(
@@ -216,16 +311,21 @@ class _DiabetesPredictorState extends State<dummy> {
         ),
         SizedBox(height: 32),
         ElevatedButton(
+          style: ElevatedButton.styleFrom(
+    primary: Colors.greenAccent, // Background color
+  ),
           onPressed: _predict,
           child: Text('Predict'),
         ),
         SizedBox(height: 32),
         Text(
           'Prediction: $_prediction',
-          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,
+          ),
         ),
       ],
     ),
+        ),
   ),
 );
   }
