@@ -163,6 +163,7 @@ import 'package:flutter/material.dart';
 import 'package:hy_diabemate_fe/Models/auth_service.dart';
 import 'package:hy_diabemate_fe/Prediction_page.dart';
 import 'package:hy_diabemate_fe/create_acount.dart';
+import 'package:hy_diabemate_fe/dummy.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -258,7 +259,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 if (message!.contains('Success')) {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) =>  Prediction_page(),
+                      // builder: (context) =>  Prediction_page(),
+                      builder: (context) => dummy(),
                     ),
                   );
                 }
