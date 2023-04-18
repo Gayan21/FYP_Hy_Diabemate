@@ -4,218 +4,230 @@ import 'package:http/http.dart' as http;
 
 class dummy extends StatefulWidget {
   @override
-  _DiabetesPredictionState createState() => _DiabetesPredictionState();
+  _DiabetesPredictorState createState() => _DiabetesPredictorState();
 }
 
-class _DiabetesPredictionState extends State<dummy> {
-  bool gender = false;
-  bool polyuria = false;
-  bool polydipsia = false;
-  bool weightLoss = false;
-  bool weakness = false;
-  bool polyphagia = false;
-  bool genitalThrush = false;
-  bool visualBlurring = false;
-  bool itching = false;
-  bool irritability = false;
-  bool delayedHealing = false;
-  bool partialParesis = false;
-  bool muscleStiffness = false;
-  bool alopecia = false;
-  bool obesity = false;
-  bool result = false;
+class _DiabetesPredictorState extends State<dummy> {
+  final ageController = TextEditingController();
+  final genderController = TextEditingController();
+  final polyuriaController = TextEditingController();
+  final polydipsiaController = TextEditingController();
+  final weightController = TextEditingController();
+  final weaknessController = TextEditingController();
+  final polyphagiaController = TextEditingController();
+  final genitalThrushController = TextEditingController();
+  final visualBlurringController = TextEditingController();
+  final itchingController = TextEditingController();
+  final irritabilityController = TextEditingController();
+  final delayedHealingController = TextEditingController();
+  final partialParesisController = TextEditingController();
+  final muscleStiffnessController = TextEditingController();
+  final alopeciaController = TextEditingController();
+  final obesityController = TextEditingController();
 
-  Future<void> predictDiabetes() async {
+  String _prediction = '';
+
+  Future<void> _predict() async {
     final response = await http.post(
-      Uri.parse('http://localhost:5000/predict'),
-      body: {
-        'Gender': gender ? 'Male' : 'Female',
-        'Polyuria': polyuria ? 'Yes' : 'No',
-        'Polydipsia': polydipsia ? 'Yes' : 'No',
-        'sudden_weight_loss': weightLoss ? 'Yes' : 'No',
-        'weakness': weakness ? 'Yes' : 'No',
-        'Polyphagia': polyphagia ? 'Yes' : 'No',
-        'Genital_thrush': genitalThrush ? 'Yes' : 'No',
-        'visual_blurring': visualBlurring ? 'Yes' : 'No',
-        'Itching': itching ? 'Yes' : 'No',
-        'Irritability': irritability ? 'Yes' : 'No',
-        'delayed_healing': delayedHealing ? 'Yes' : 'No',
-        'partial_paresis': partialParesis ? 'Yes' : 'No',
-        'muscle_stiffness': muscleStiffness ? 'Yes' : 'No',
-        'Alopecia': alopecia ? 'Yes' : 'No',
-        'Obesity': obesity ? 'Yes' : 'No',
+      Uri.parse('http://127.0.0.1:5000/predict'),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
       },
+      body: jsonEncode(<String, String>{
+        'age': ageController.text,
+        'gender': genderController.text,
+        'polyuria': polyuriaController.text,
+        'polydipsia': polydipsiaController.text,
+        'weight': weightController.text,
+        'weakness': weaknessController.text,
+        'polyphagia': polyphagiaController.text,
+        'genital_thrush': genitalThrushController.text,
+        'visual_blurring': visualBlurringController.text,
+        'itching': itchingController.text,
+        'irritability': irritabilityController.text,
+        'delayed_healing': delayedHealingController.text,
+        'partial_paresis': partialParesisController.text,
+        'muscle_stiffness': muscleStiffnessController.text,
+        'alopecia': alopeciaController.text,
+        'obesity': obesityController.text,
+      }),
     );
 
-    if (response.statusCode == 200) {
-      final jsonResponse = json.decode(response.body);
-      setState(() {
-        result = jsonResponse['result'];
-      });
-    } else {
-      setState(() {
-        result = false;
-      });
-    }
+    final result = jsonDecode(response.body);
+
+    setState(() {
+      _prediction = result['prediction'];
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Diabetes Prediction'),
+        title: Text('Diabetes Predictor'),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SwitchListTile(
-              title: Text('Gender'),
-              value: gender,
-              onChanged: (value) {
-                setState(() {
-                  gender = value;
-                });
-              },
+            Padding(
+              padding: EdgeInsets.all(16),
+              child: TextField(
+                controller: ageController,
+                decoration: InputDecoration(
+                  labelText: 'Age',
+                ),
+              ),
             ),
-            SwitchListTile(
-              title: Text('Polyuria'),
-              value: polyuria,
-              onChanged: (value) {
-                setState(() {
-                  polyuria = value;
-                });
-              },
+            Padding(
+              padding: EdgeInsets.all(16),
+              child: TextField(
+                controller: genderController,
+                decoration: InputDecoration(
+                  labelText: 'Gender (Male/Female)',
+                ),
+              ),
             ),
-            SwitchListTile(
-              title: Text('Polydipsia'),
-              value: polydipsia,
-              onChanged: (value) {
-                setState(() {
-                  polydipsia = value;
-                });
-              },
+            Padding(
+              padding: EdgeInsets.all(16),
+              child: TextField(
+                controller: polyuriaController,
+                decoration: InputDecoration(
+                  labelText: 'Polyuria (Yes/No)',
+                ),
+              ),
             ),
-            SwitchListTile(
-              title: Text('Sudden Weight Loss'),
-              value: weightLoss,
-              onChanged: (value) {
-                setState(() {
-                  weightLoss = value;
-                });
-              },
+            Padding(
+              padding: EdgeInsets.all(16),
+              child: TextField(
+                controller: polydipsiaController,
+                decoration: InputDecoration(
+                  labelText: 'Polydipsia (Yes/No)',
+                ),
+              ),
             ),
-           SwitchListTile(
-        title: Text('Weakness'),
-        value: weakness,
-        onChanged: (value) {
-        setState(() {
-        weakness = value;
-        });
-        },
+            Padding(
+              padding: EdgeInsets.all(16),
+              child: TextField(
+                controller: weightController,
+                decoration: InputDecoration(
+                  labelText: 'Weight Loss (Yes/No)',
+                ),
+              ),
+                        ),
+        
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: TextField(
+            controller: weaknessController,
+            decoration: InputDecoration(
+              labelText: 'Weakness (Yes/No)',
+            ),
+          ),
         ),
-        SwitchListTile(
-        title: Text('Polyphagia'),
-        value: polyphagia,
-        onChanged: (value) {
-        setState(() {
-        polyphagia = value;
-        });
-        },
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: TextField(
+            controller: polyphagiaController,
+            decoration: InputDecoration(
+              labelText: 'Polyphagia (Yes/No)',
+            ),
+          ),
         ),
-        SwitchListTile(
-        title: Text('Genital Thrush'),
-        value: genitalThrush,
-        onChanged: (value) {
-        setState(() {
-        genitalThrush = value;
-        });
-        },
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: TextField(
+            controller: genitalThrushController,
+            decoration: InputDecoration(
+              labelText: 'Genital Thrush (Yes/No)',
+            ),
+          ),
         ),
-        SwitchListTile(
-        title: Text('Visual Blurring'),
-        value: visualBlurring,
-        onChanged: (value) {
-        setState(() {
-        visualBlurring = value;
-        });
-        },
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: TextField(
+            controller: visualBlurringController,
+            decoration: InputDecoration(
+              labelText: 'Visual Blurring (Yes/No)',
+            ),
+          ),
         ),
-        SwitchListTile(
-        title: Text('Itching'),
-        value: itching,
-        onChanged: (value) {
-        setState(() {
-        itching = value;
-        });
-        },
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: TextField(
+            controller: itchingController,
+            decoration: InputDecoration(
+              labelText: 'Itching (Yes/No)',
+            ),
+          ),
         ),
-        SwitchListTile(
-        title: Text('Irritability'),
-        value: irritability,
-        onChanged: (value) {
-        setState(() {
-        irritability = value;
-        });
-        },
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: TextField(
+            controller: irritabilityController,
+            decoration: InputDecoration(
+              labelText: 'Irritability (Yes/No)',
+            ),
+          ),
         ),
-        SwitchListTile(
-        title: Text('Delayed Healing'),
-        value: delayedHealing,
-        onChanged: (value) {
-        setState(() {
-        delayedHealing = value;
-        });
-        },
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: TextField(
+            controller: delayedHealingController,
+            decoration: InputDecoration(
+              labelText: 'Delayed Healing (Yes/No)',
+            ),
+          ),
         ),
-        SwitchListTile(
-        title: Text('Partial Paresis'),
-        value: partialParesis,
-        onChanged: (value) {
-        setState(() {
-        partialParesis = value;
-        });
-        },
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: TextField(
+            controller: partialParesisController,
+            decoration: InputDecoration(
+              labelText: 'Partial Paresis (Yes/No)',
+            ),
+          ),
         ),
-        SwitchListTile(
-        title: Text('Muscle Stiffness'),
-        value: muscleStiffness,
-        onChanged: (value) {
-        setState(() {
-        muscleStiffness = value;
-        });
-        },
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: TextField(
+            controller: muscleStiffnessController,
+            decoration: InputDecoration(
+              labelText: 'Muscle Stiffness (Yes/No)',
+            ),
+          ),
         ),
-        SwitchListTile(
-        title: Text('Alopecia'),
-        value: alopecia,
-        onChanged: (value) {
-        setState(() {
-        alopecia = value;
-        });
-        },
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: TextField(
+            controller: alopeciaController,
+            decoration: InputDecoration(
+              labelText: 'Alopecia (Yes/No)',
+            ),
+          ),
         ),
-        SwitchListTile(
-        title: Text('Obesity'),
-        value: obesity,
-        onChanged: (value) {
-        setState(() {
-        obesity = value;
-        });
-        },
+        Padding(
+          padding: EdgeInsets.all(16),
+          child: TextField(
+            controller: obesityController,
+            decoration: InputDecoration(
+              labelText: 'Obesity (Yes/No)',
+            ),
+          ),
         ),
+        SizedBox(height: 32),
         ElevatedButton(
-        onPressed: predictDiabetes,
-        child: Text('Predict'),
+          onPressed: _predict,
+          child: Text('Predict'),
         ),
-        result != null
-        ? Text(
-        result ? 'Positive' : 'Negative',
-        style: TextStyle(fontSize: 24),
-        )
-        : Container(),
-        ],
+        SizedBox(height: 32),
+        Text(
+          'Prediction: $_prediction',
+          style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        ),
-        );
-        }
-        }
+      ],
+    ),
+  ),
+);
+  }
+}
+           
