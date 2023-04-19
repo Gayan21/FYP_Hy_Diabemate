@@ -30,7 +30,7 @@ class _DiabetesPredictorState extends State<dummy> {
 
   Future<void> _predict() async {
     final response = await http.post(
-      Uri.parse('http://127.0.0.1:5000/predict'),
+      Uri.parse('http://localhost:5000/predict'),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
