@@ -30,7 +30,7 @@ class _DiabetesPredictorState extends State<dummy> {
 
   Future<void> _predict() async {
     final response = await http.post(
-      Uri.parse('http://localhost:5000/predict'),
+      Uri.parse('http://10.0.2.2:5000/predict'),//http://127.0.0.1:5000/predict
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
@@ -53,11 +53,12 @@ class _DiabetesPredictorState extends State<dummy> {
         'obesity': obesityController.text,
       }),
     );
-
+// print(response.body);
     final result = jsonDecode(response.body);
+    // print(result);
 
     setState(() {
-      _prediction = result['prediction'];
+       _prediction = result['prediction'].toString();
     });
   }
 
