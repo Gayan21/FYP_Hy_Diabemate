@@ -32,9 +32,9 @@ class _DiabetesPredictorState extends State<dummy> {
     final response = await http.post(
       Uri.parse('http://10.0.2.2:5000/predict'),//http://127.0.0.1:5000/predict
       headers: <String, String>{
-        'Content-Type': 'application/json; charset=UTF-8',
+        'Content-Type': 'application/json',
       },
-      body: jsonEncode(<String, String>{
+      body: jsonEncode(<String, dynamic>{
         'age': ageController.text,
         'gender': genderController.text,
         'polyuria': polyuriaController.text,
@@ -53,7 +53,7 @@ class _DiabetesPredictorState extends State<dummy> {
         'obesity': obesityController.text,
       }),
     );
-// print(response.body);
+print(response.body);
     final result = jsonDecode(response.body);
     // print(result);
 
