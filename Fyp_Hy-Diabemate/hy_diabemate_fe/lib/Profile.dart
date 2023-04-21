@@ -57,13 +57,19 @@ class _ProfileScreenState extends State<Profile> {
             const SizedBox(height: 20.0),
             Text(
               'Email: ${currentUser?.email ?? 'Unknown'}',
-              style: const TextStyle(fontSize: 20.0),
+              style: TextStyle(
+    fontSize: 20.0,
+    color: Colors.white,
+  ),
             ),
             const SizedBox(height: 20.0),
             TextFormField(
               initialValue: _name,
               decoration: const InputDecoration(
                 labelText: 'Name',
+                labelStyle: TextStyle(
+      color: Colors.white,
+    ),
               ),
               onChanged: (value) {
                 setState(() {
@@ -77,6 +83,9 @@ class _ProfileScreenState extends State<Profile> {
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                 labelText: 'Age',
+                labelStyle: TextStyle(
+      color: Colors.white,
+    ),
               ),
               onChanged: (value) {
                 setState(() {
