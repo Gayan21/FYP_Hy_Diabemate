@@ -8,7 +8,7 @@ import 'Login_screen.dart';
 
 class First_Page extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
+ Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(57, 7, 204, 178),
       appBar: AppBar(
@@ -36,61 +36,56 @@ class First_Page extends StatelessWidget {
               border: Border.all(color: Colors.black, width: 2.0),
               image: DecorationImage(
                 image: NetworkImage(
-                    "https://livingwithamplitude.com/wp-content/uploads/2021/11/november-3-diabetes-awareness-1024x972.jpg"),
+                  "https://livingwithamplitude.com/wp-content/uploads/2021/11/november-3-diabetes-awareness-1024x972.jpg"
+                ),
+                fit: BoxFit.cover,
               ),
+              borderRadius: BorderRadius.circular(50.0),
             ),
           ),
           Container(
             padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
             child: Text(
-              "Help you to overcome the diabetese risk",
-               textAlign: TextAlign.center,
+              "Empowering you to conquer diabetes and live your best life.",
+              textAlign: TextAlign.center,
               style: TextStyle(
-                 color: Colors.white,
-                
-               
-                
-                fontSize: 26.0,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontFamily: "Passion One",
+                fontSize: 25.0,
               ),
             ),
-            
-            
           ),
           Container(
-            width: 50,
-            padding:  EdgeInsets.all(55),  
-            child: ElevatedButton( 
-            
-              style:  ElevatedButton.styleFrom(
-    primary: Colors.greenAccent, 
-    shape: RoundedRectangleBorder(
-                      side: const BorderSide(
-                              width: 2, // thickness
-                              color: Colors.white // color
-                      ),
-                      // border radius
-                      borderRadius: BorderRadius.circular(16) 
-              )// Background color
-  ),
-      
-      
-   
-              child: new Text("Get Started"), 
+            padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.2),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.greenAccent,
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(
+                    width: 2, // thickness
+                    color: Colors.black, // color
+                  ),
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+              ),
+              child: Text(
+                "Get Started",
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) =>  LoginScreen())
-     
-               );
-              
-              }, 
-              // splashColor: Colors.redAccent,
-              )
-            
-            
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                );
+              },
+            ),
           ),
-      
-        ]
-    )
+        ],
+      ),
     );
   }
 }
