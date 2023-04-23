@@ -51,9 +51,9 @@ class _ProfileScreenState extends State<Profile> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Icon(Icons.person, size: 100.0),
+            const Icon(Icons.person, size: 200.0),
             const SizedBox(height: 20.0),
             Text(
               'Email: ${currentUser?.email ?? 'Unknown'}',
@@ -63,10 +63,18 @@ class _ProfileScreenState extends State<Profile> {
   ),
             ),
             const SizedBox(height: 20.0),
-            TextFormField(
+            SizedBox( // <-- SEE HERE
+  width: 350,
+           child: TextFormField(
               initialValue: _name,
-              decoration: const InputDecoration(
+              decoration:  InputDecoration(
                 labelText: 'Name',
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+          width: 3, color: Colors.greenAccent),
+        borderRadius: BorderRadius.circular(32.0),
+       
+      ),
                 labelStyle: TextStyle(
       color: Colors.white,
     ),
@@ -77,12 +85,22 @@ class _ProfileScreenState extends State<Profile> {
                 });
               },
             ),
+            ),
             const SizedBox(height: 20.0),
-            TextFormField(
+            SizedBox( // <-- SEE HERE
+  width: 350,
+          child:  TextFormField(
               initialValue: _age.toString(),
               keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
+              
+              decoration:  InputDecoration(
                 labelText: 'Age',
+               enabledBorder: OutlineInputBorder(
+                 borderSide: BorderSide(
+          width: 3, color: Colors.greenAccent),
+        borderRadius: BorderRadius.circular(32.0)
+      ),
+                
                 labelStyle: TextStyle(
       color: Colors.white,
     ),
@@ -92,6 +110,7 @@ class _ProfileScreenState extends State<Profile> {
                   _age = int.parse(value);
                 });
               },
+            ),
             ),
             const SizedBox(height: 20.0),
             ElevatedButton(
