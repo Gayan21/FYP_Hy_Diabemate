@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hy_diabemate_fe/Prediction_page.dart';
+import 'package:hy_diabemate_fe/dummy.dart';
 
 import 'Models/auth_service.dart';
 
@@ -88,7 +89,7 @@ class _CreateAccountState extends State<CreateAccount> {
                 );
                 if (message!.contains('Success')) {
                   Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) =>  Prediction_page()));
+                      MaterialPageRoute(builder: (context) =>  dummy()));
                 }
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
