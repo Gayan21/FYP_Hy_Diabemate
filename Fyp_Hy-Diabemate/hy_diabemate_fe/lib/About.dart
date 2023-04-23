@@ -4,16 +4,21 @@ import 'package:flutter/material.dart';
 
 // ignore: use_key_in_widget_constructors
 class About extends StatelessWidget {
+   final String prediction;
+
+  About({required this.prediction});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       backgroundColor: Color.fromARGB(255, 155, 188, 176),
       appBar: AppBar(
-        backgroundColor: Colors.greenAccent,
+       backgroundColor: Color.fromARGB(255, 74, 102, 95),
+        centerTitle: true,
         title: Text(
-          "About",
+          "Hy-Diabemate",
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontFamily: "courier new",
+            fontFamily: "Satisfy",
             fontSize: 35.0,
           ),
         ),
@@ -72,15 +77,14 @@ class About extends StatelessWidget {
               ),
             ),
             padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
-            child: Text(
-              "Our Results:\nAccuracy 90%",
-              style: TextStyle(
-                color: Colors.red,
-                fontWeight: FontWeight.bold,
-                fontFamily: "courier new",
-                fontSize: 26.0,
-              ),
-            ),
+             child: Text(
+   "Your prediction: ${this.prediction == '1' ? 'Positive' : 'Negative'}",
+    style: TextStyle(
+      fontWeight: FontWeight.bold,
+      fontFamily: "courier new",
+      fontSize: 26.0,
+    ),
+  ),
           ),
         ],
       ),
