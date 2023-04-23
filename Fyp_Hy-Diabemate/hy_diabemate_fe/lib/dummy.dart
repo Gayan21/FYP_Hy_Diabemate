@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:hy_diabemate_fe/About.dart';
 import 'package:hy_diabemate_fe/Profile.dart';
 
 class dummy extends StatefulWidget {
@@ -315,7 +316,14 @@ print(response.body);
           style: ElevatedButton.styleFrom(
     primary: Colors.greenAccent, // Background color
   ),
-          onPressed: _predict,
+  //         onPressed: _predict,
+         onPressed: () async {
+    final prediction = await _predict();
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => About(prediction: _prediction)),
+    );
+  },
           child: Text('Predict'),
         ),
         SizedBox(height: 32),
