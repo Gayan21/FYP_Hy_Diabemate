@@ -92,7 +92,7 @@ class About extends StatelessWidget {
               height: MediaQuery.of(context).size.height * 0.03,
             ),
             Expanded(
-              flex: 1,
+              // flex: 2,
               child: Container(
                 padding:
                     EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
@@ -103,12 +103,29 @@ class About extends StatelessWidget {
                     width: 2.0,
                   ),
                 ),
-                child: Text(
-                  "Your prediction: ${this.prediction == '1' ? 'Positive' : 'Negative'}",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Courier New",
-                    fontSize: 26.0,
+                child: Text.rich(
+                  TextSpan(
+                    text: "Your prediction: ",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Castoro Titling",
+                      fontSize: 20.0,
+                      color: Colors.black,
+                    ),
+                    children: [
+                      TextSpan(
+                        text:
+                            "${this.prediction == '1' ? 'Positive' : 'Negative'}",
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Castoro Titling",
+                          fontSize: 20.0,
+                          color: this.prediction == '1'
+                              ? Colors.red
+                              : Color.fromARGB(255, 2, 104, 6),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
