@@ -79,6 +79,9 @@ class _ProfileScreenState extends State<Profile> {
       color: Colors.white,
     ),
               ),
+              style: TextStyle(
+                    color: Colors.white,
+                  ),
               onChanged: (value) {
                 setState(() {
                   _name = value;
@@ -105,6 +108,9 @@ class _ProfileScreenState extends State<Profile> {
       color: Colors.white,
     ),
               ),
+              style: TextStyle(
+                    color: Colors.white,
+                  ),
               onChanged: (value) {
                 setState(() {
                   _age = int.parse(value);
