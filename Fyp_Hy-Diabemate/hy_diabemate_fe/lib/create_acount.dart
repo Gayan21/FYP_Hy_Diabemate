@@ -54,6 +54,9 @@ class _CreateAccountState extends State<CreateAccount> {
       borderRadius: BorderRadius.circular(50.0),
                 ),
                 ),
+                style: TextStyle(
+                    color: Colors.white,
+                  ),
               ),
             ),
             const SizedBox(
@@ -73,6 +76,9 @@ class _CreateAccountState extends State<CreateAccount> {
       borderRadius: BorderRadius.circular(50.0),
                   )
                 ),
+                style: TextStyle(
+                    color: Colors.white,
+                  ),
               ),
             ),
             const SizedBox(

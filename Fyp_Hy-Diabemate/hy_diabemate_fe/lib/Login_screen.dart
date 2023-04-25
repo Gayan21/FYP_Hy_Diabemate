@@ -1,5 +1,3 @@
-
-
 // import 'package:flutter/material.dart';
 // import 'package:hy_diabemate_fe/Models/auth_service.dart';
 // import 'package:hy_diabemate_fe/Prediction_page.dart';
@@ -243,6 +241,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(50.0),
                     ),
                   ),
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
               const SizedBox(
@@ -266,6 +267,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       borderRadius: BorderRadius.circular(50.0),
                     ),
+                  ),
+                  style: TextStyle(
+                    color: Colors.white,
                   ),
                 ),
               ),
