@@ -113,16 +113,30 @@ class About extends StatelessWidget {
                       color: Colors.black,
                     ),
                     children: [
+                      // TextSpan(
+                      //   text:
+                      //       "${this.prediction == '1' ? 'Positive' : 'Negative'}",
+                      //   style: TextStyle(
+                      //     fontWeight: FontWeight.bold,
+                      //     fontFamily: "Castoro Titling",
+                      //     fontSize: 20.0,
+                      //     color: this.prediction == '1'
+                      //         ? Colors.red
+                      //         : Color.fromARGB(255, 2, 104, 6),
+                      //   ),
+                      // ),
                       TextSpan(
                         text:
-                            "${this.prediction == '1' ? 'Positive' : 'Negative'}",
+                            "${this.prediction == '1' ? 'Type 1 Positive' : this.prediction == '2' ? 'Positive' : 'Negative'}",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontFamily: "Castoro Titling",
                           fontSize: 20.0,
                           color: this.prediction == '1'
                               ? Colors.red
-                              : Color.fromARGB(255, 2, 104, 6),
+                              : this.prediction == '2'
+                                  ? Colors.orange
+                                  : Color.fromARGB(255, 2, 104, 6),
                         ),
                       ),
                     ],
