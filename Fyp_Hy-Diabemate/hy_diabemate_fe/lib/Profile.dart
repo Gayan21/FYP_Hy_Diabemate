@@ -1,5 +1,152 @@
+// import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:flutter/material.dart';
+
+// class Profile extends StatefulWidget {
+//   const Profile({Key? key}) : super(key: key);
+
+//   @override
+//   _ProfileScreenState createState() => _ProfileScreenState();
+// }
+
+// class _ProfileScreenState extends State<Profile> {
+//   late String _name;
+//   late int _age;
+
+//   @override
+//   void initState() {
+//     super.initState();
+//     final currentUser = FirebaseAuth.instance.currentUser;
+//     _name = currentUser?.displayName ?? 'Unknown';
+//     _age = currentUser?.metadata.creationTime?.year ?? DateTime.now().year;
+//   }
+
+//   void _updateProfile() {
+//     final currentUser = FirebaseAuth.instance.currentUser;
+//     currentUser?.updateProfile(displayName: _name);
+//     ScaffoldMessenger.of(context).showSnackBar(
+//       SnackBar(content: Text('Profile updated')),
+//     );
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     final currentUser = FirebaseAuth.instance.currentUser;
+
+//     return Scaffold(
+//       backgroundColor: Color.fromARGB(57, 7, 204, 178),
+//       appBar: AppBar(
+//        backgroundColor: Color.fromARGB(255, 74, 102, 95),
+//          leading: BackButton(
+//            onPressed: () => Navigator.of(context).pop(),
+//      color: Colors.white
+//    ),
+//          title: Text(
+//           "Hy-Diabemate",
+//           style: TextStyle(
+//             fontWeight: FontWeight.bold,
+//             fontFamily: "Satisfy",
+//             fontSize: 35.0,
+//           ),
+//         ),
+//       ),
+//       body: Center(
+//         child: Column(
+//           // mainAxisAlignment: MainAxisAlignment.center,
+//           children: [
+//             const Icon(Icons.person, size: 200.0),
+//             const SizedBox(height: 20.0),
+//             Text(
+//               'Email: ${currentUser?.email ?? 'Unknown'}',
+//               style: TextStyle(
+//     fontSize: 20.0,
+//     color: Colors.white,
+//   ),
+//             ),
+//             const SizedBox(height: 20.0),
+//             SizedBox( // <-- SEE HERE
+//   width: 350,
+//            child: TextFormField(
+//               initialValue: _name,
+//               decoration:  InputDecoration(
+//                 labelText: 'Name',
+//                 enabledBorder: OutlineInputBorder(
+//                   borderSide: BorderSide(
+//           width: 3, color: Colors.greenAccent),
+//         borderRadius: BorderRadius.circular(32.0),
+
+//       ),
+//                 labelStyle: TextStyle(
+//       color: Colors.white,
+//     ),
+//               ),
+//               style: TextStyle(
+//                     color: Colors.white,
+//                   ),
+//               onChanged: (value) {
+//                 setState(() {
+//                   _name = value;
+//                 });
+//               },
+//             ),
+//             ),
+//             const SizedBox(height: 20.0),
+//             SizedBox( // <-- SEE HERE
+//   width: 350,
+//           child:  TextFormField(
+//               initialValue: _age.toString(),
+//               keyboardType: TextInputType.number,
+
+//               decoration:  InputDecoration(
+//                 labelText: 'Age',
+//                enabledBorder: OutlineInputBorder(
+//                  borderSide: BorderSide(
+//           width: 3, color: Colors.greenAccent),
+//         borderRadius: BorderRadius.circular(32.0)
+//       ),
+
+//                 labelStyle: TextStyle(
+//       color: Colors.white,
+//     ),
+//               ),
+//               style: TextStyle(
+//                     color: Colors.white,
+//                   ),
+//               onChanged: (value) {
+//                 setState(() {
+//                   _age = int.parse(value);
+//                 });
+//               },
+//             ),
+//             ),
+//             const SizedBox(height: 20.0),
+//             ElevatedButton(
+//               style: ElevatedButton.styleFrom(
+//     primary: Colors.greenAccent, // Background color
+//   ),
+//               onPressed: _updateProfile,
+//               child: const Text('Update Profile'),
+//             ),
+//             const SizedBox(height: 20.0),
+//             ElevatedButton(
+//               style: ElevatedButton.styleFrom(
+//     primary: Colors.greenAccent, // Background color
+//   ),
+//               onPressed: () {
+//                 FirebaseAuth.instance.signOut();
+//                 Navigator.of(context).popUntil((route) => route.isFirst);
+//               },
+//               child: const Text('Log Out'),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hy_diabemate_fe/History_page.dart';
 
 class Profile extends StatefulWidget {
   const Profile({Key? key}) : super(key: key);
@@ -8,9 +155,11 @@ class Profile extends StatefulWidget {
   _ProfileScreenState createState() => _ProfileScreenState();
 }
 
-class _ProfileScreenState extends State<Profile> {
+class _ProfileScreenState extends State<Profile>
+    with SingleTickerProviderStateMixin {
   late String _name;
   late int _age;
+  late TabController _tabController;
 
   @override
   void initState() {
@@ -18,6 +167,7 @@ class _ProfileScreenState extends State<Profile> {
     final currentUser = FirebaseAuth.instance.currentUser;
     _name = currentUser?.displayName ?? 'Unknown';
     _age = currentUser?.metadata.creationTime?.year ?? DateTime.now().year;
+    _tabController = TabController(length: 2, vsync: this);
   }
 
   void _updateProfile() {
@@ -32,331 +182,211 @@ class _ProfileScreenState extends State<Profile> {
   Widget build(BuildContext context) {
     final currentUser = FirebaseAuth.instance.currentUser;
 
-    return Scaffold(
-      backgroundColor: Color.fromARGB(57, 7, 204, 178),
-      appBar: AppBar(
-       backgroundColor: Color.fromARGB(255, 74, 102, 95),
-         leading: BackButton(
-           onPressed: () => Navigator.of(context).pop(),
-     color: Colors.white
-   ), 
-         title: Text(
-          "Hy-Diabemate",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontFamily: "Satisfy",
-            fontSize: 35.0,
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+        backgroundColor: Color.fromARGB(57, 7, 204, 178),
+        appBar: AppBar(
+          backgroundColor: Color.fromARGB(255, 74, 102, 95),
+          leading: BackButton(
+            onPressed: () => Navigator.of(context).pop(),
+            color: Colors.white,
+          ),
+          title: Text(
+            "Hy-Diabemate",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: "Satisfy",
+              fontSize: 35.0,
+            ),
+          ),
+          bottom: TabBar(
+            controller: _tabController,
+            tabs: [
+              Tab(
+                text: 'Profile',
+              ),
+              Tab(
+                text: 'History',
+              ),
+            ],
           ),
         ),
-      ),
-      body: Center(
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.center,
+        body: TabBarView(
+          controller: _tabController,
           children: [
-            const Icon(Icons.person, size: 200.0),
-            const SizedBox(height: 20.0),
-            Text(
-              'Email: ${currentUser?.email ?? 'Unknown'}',
-              style: TextStyle(
-    fontSize: 20.0,
-    color: Colors.white,
-  ),
-            ),
-            const SizedBox(height: 20.0),
-            SizedBox( // <-- SEE HERE
-  width: 350,
-           child: TextFormField(
-              initialValue: _name,
-              decoration:  InputDecoration(
-                labelText: 'Name',
-                enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-          width: 3, color: Colors.greenAccent),
-        borderRadius: BorderRadius.circular(32.0),
-       
-      ),
-                labelStyle: TextStyle(
-      color: Colors.white,
-    ),
-              ),
-              style: TextStyle(
-                    color: Colors.white,
+            SingleChildScrollView(
+              child: Column(
+                // mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.person, size: 200.0),
+                  const SizedBox(height: 20.0),
+                  Text(
+                    'Email: ${currentUser?.email ?? 'Unknown'}',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.white,
+                    ),
                   ),
-              onChanged: (value) {
-                setState(() {
-                  _name = value;
-                });
-              },
-            ),
-            ),
-            const SizedBox(height: 20.0),
-            SizedBox( // <-- SEE HERE
-  width: 350,
-          child:  TextFormField(
-              initialValue: _age.toString(),
-              keyboardType: TextInputType.number,
-              
-              decoration:  InputDecoration(
-                labelText: 'Age',
-               enabledBorder: OutlineInputBorder(
-                 borderSide: BorderSide(
-          width: 3, color: Colors.greenAccent),
-        borderRadius: BorderRadius.circular(32.0)
-      ),
-                
-                labelStyle: TextStyle(
-      color: Colors.white,
-    ),
-              ),
-              style: TextStyle(
-                    color: Colors.white,
+                  const SizedBox(height: 20.0),
+                  SizedBox(
+                    width: 350,
+                    child: TextFormField(
+                      initialValue: _name,
+                      decoration: InputDecoration(
+                        labelText: 'Name',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 3, color: Colors.greenAccent),
+                          borderRadius: BorderRadius.circular(32.0),
+                        ),
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          _name = value;
+                        });
+                      },
+                    ),
                   ),
-              onChanged: (value) {
-                setState(() {
-                  _age = int.parse(value);
-                });
-              },
+                  const SizedBox(height: 20.0),
+                  SizedBox(
+                    width: 350,
+                    child: TextFormField(
+                      initialValue: _age.toString(),
+                      keyboardType: TextInputType.number,
+                      decoration: InputDecoration(
+                        labelText: 'Age',
+                        enabledBorder: OutlineInputBorder(
+                          borderSide:
+                              BorderSide(width: 3, color: Colors.greenAccent),
+                          borderRadius: BorderRadius.circular(32.0),
+                        ),
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                      onChanged: (value) {
+                        setState(() {
+                          _age = int.parse(value);
+                        });
+                      },
+                    ),
+                  ),
+                  const SizedBox(height: 20.0),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.greenAccent, // Background color
+                    ),
+                    onPressed: _updateProfile,
+                    child: const Text('Update Profile'),
+                  ),
+                  const SizedBox(height: 20.0),
+                  ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.greenAccent, // Background color
+                    ),
+                    onPressed: () {
+                      FirebaseAuth.instance.signOut();
+                      Navigator.of(context).popUntil((route) => route.isFirst);
+                    },
+                    child: const Text('Log Out'),
+                  ),
+                ],
+              ),
             ),
+Container(
+  padding: EdgeInsets.all(16),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Text(
+        'Prediction History',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 24,
+          color: Colors.white,
+        ),
+      ),
+      SizedBox(height: 16),
+      Text(
+        'Status: Positive and Negative',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 16,
+          color: Colors.white,
+        ),
+      ),
+      SizedBox(height: 16),
+      DataTable(
+        columns: [
+          DataColumn(
+            label: Text('Date', style: TextStyle(color: Colors.white)),
+          ),
+          DataColumn(
+            label: Text('Status', style: TextStyle(color: Colors.white)),
+          ),
+        ],
+        rows: [
+          DataRow(cells: [
+            DataCell(Text('2022-01-01', style: TextStyle(color: Colors.white))),
+            DataCell(
+              Row(
+                children: [
+                  Icon(
+                    Icons.check_circle,
+                    color: Colors.green,
+                  ),
+                  SizedBox(width: 8),
+                  Text('Positive', style: TextStyle(color: Colors.white)),
+                ],
+              ),
             ),
-            const SizedBox(height: 20.0),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-    primary: Colors.greenAccent, // Background color
+          ]),
+          DataRow(cells: [
+            DataCell(Text('2022-01-02', style: TextStyle(color: Colors.white))),
+            DataCell(
+              Row(
+                children: [
+                  Icon(
+                    Icons.cancel,
+                    color: Colors.red,
+                  ),
+                  SizedBox(width: 8),
+                  Text('Negative', style: TextStyle(color: Colors.white)),
+                ],
+              ),
+            ),
+          ]),
+          // Add more rows for additional history data
+        ],
+      ),
+    ],
   ),
-              onPressed: _updateProfile,
-              child: const Text('Update Profile'),
-            ),
-            const SizedBox(height: 20.0),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-    primary: Colors.greenAccent, // Background color
-  ),
-              onPressed: () {
-                FirebaseAuth.instance.signOut();
-                Navigator.of(context).popUntil((route) => route.isFirst);
-              },
-              child: const Text('Log Out'),
-            ),
+)
+
+
+            // Center(
+            //   child: Text(
+            //     'History',
+            //     style: TextStyle(
+            //       fontSize: 30.0,
+            //       fontWeight: FontWeight.bold,
+            //       color: Colors.white,
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),
     );
   }
 }
-
-
-
-
-// import 'package:flutter/material.dart';
-// import 'package:hy_diabemate_fe/Login_screen.dart';
-// // import 'package:url_launcher/url_launcher.dart';
-
-// void main() {
-//   runApp(Profile());
-// }
-
-// class Profile extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       home: Scaffold(
-//         appBar: AppBar(
-//           backgroundColor: Color.fromARGB(255, 74, 102, 95),
-//          leading: BackButton(
-//            onPressed: () => Navigator.of(context).pop(),
-//      color: Colors.white
-//    ), 
-//          title: Text(
-//           "Hy-Diabemate",
-//           style: TextStyle(
-//             fontWeight: FontWeight.bold,
-//             fontFamily: "Satisfy",
-//             fontSize: 35.0,
-//           ),
-//         ),
-//       ),
-//         backgroundColor: Color.fromARGB(57, 7, 204, 178),
-//         body: SafeArea(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: <Widget>[
-//               Padding(
-
-//    padding: const EdgeInsets.all(5),
-//    child: Column(
-//      mainAxisSize: MainAxisSize.min,
-     
-//      children: [
-//        CircleAvatar(
-//         radius: 50.0,
-//                 backgroundImage: AssetImage('lib/assets/images/profile.png'),
-//        ),
-//        SizedBox(height: 10),
-//        Container(
-//         //  width: 100,
-//          child: Text(
-//                 'Crépin Fadjo',
-//                 style: TextStyle(
-//                   fontSize: 20.0,
-//                   fontFamily: 'Pacifico',
-//                   fontWeight: FontWeight.bold,
-//                   color: Colors.black
-//                 ),
-//               ),
-//        )
-//     ]
-//   )
-// ),
-//               // CircleAvatar(
-//               //   radius: 50.0,
-//               //   backgroundImage: AssetImage('lib/assets/images/profile.png'),
-//               // ),
-//               // Text(
-//               //   'Crépin Fadjo',
-//               //   style: TextStyle(
-//               //     fontSize: 30.0,
-//               //     fontFamily: 'Pacifico',
-//               //     fontWeight: FontWeight.bold,
-//               //     color: Colors.black
-//               //   ),
-//               // ),
-//               // 
-//               SizedBox(
-//                 height: 20.0,
-//                 width: 400,
-//                 child: Divider(
-                  
-//                   height: 20,
-//             thickness: 2,
-//             indent: 20,
-//             endIndent: 20,
-//            color: Colors.teal.shade100,
-                  
-//                 ),
-//               ),
-//               InkWell(
-//                 child: Card(
-//                   margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-//                   child: ListTile(
-//                     leading: Icon(
-//                       Icons.phone,
-//                       color: Colors.teal,
-//                     ),
-//                     title: Text(
-//                       '+229 96119149',
-//                       style: TextStyle(
-//                           fontFamily: 'SourceSansPro',
-//                           fontSize: 20,
-//                           color: Colors.teal.shade900),
-//                     ),
-//                   ),
-
-//                 ),
-//                 // onTap: (){
-//                 //   _launchURL('tel:+229 96119149');
-//                 // }
-//               ),
-//               InkWell(
-//                 child: Card(
-//                   margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-//                   child: ListTile(
-//                     leading: Icon(
-//                       Icons.email,
-//                       color: Colors.teal,
-//                     ),
-//                     title:Text(
-//                       'fadcrepin@gmail.com',
-//                       style: TextStyle(
-//                           fontFamily: 'SourceSansPro',
-//                           fontSize: 20,
-//                           color: Colors.teal.shade900),
-//                     ),
-//                   ),
-//                 ),
-//                 // onTap: (){
-//                 //   _launchURL('mailto:fadcrepin@gmail.com?subject=Need Flutter developer&body=Please contact me');
-//                 // },
-//               ),
-//               InkWell(
-//                 child: Card(
-//                   margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 25.0),
-//                   child: ListTile(
-//                     leading: Icon(
-//                       Icons.timeline,
-//                       color: Colors.teal,
-//                     ),
-//                     title:Text(
-//                       '50',
-//                       style: TextStyle(
-//                           fontFamily: 'SourceSansPro',
-//                           fontSize: 20,
-//                           color: Colors.teal.shade900),
-//                     ),
-//                   ),
-//                 ),
-//                 // onTap: (){
-//                 //   _launchURL('mailto:fadcrepin@gmail.com?subject=Need Flutter developer&body=Please contact me');
-//                 // },
-//               ),
-//                  Container(
-//               height: 50,
-//               width: 250,
-//               decoration: BoxDecoration(
-//                   color: Colors.greenAccent, borderRadius: BorderRadius.circular(20)),
-//               // ignore: deprecated_member_use
-//               child: TextButton(
-//                 onPressed: () {
-                   
-//       //           Navigator.of(context).push(
-//       // MaterialPageRoute(builder: (context) =>  Prediction_page())
-     
-//       //          );
-              
-             
-//                 },
-//                 child: Text(
-//                   'Edit Details',
-//                   style: TextStyle(color: Colors.white, fontSize: 25),
-                  
-//                 ),
-//               ),
-//             ),
-//             SizedBox(
-//       height: 50, // <-- SEE HERE
-//     ),
-//             Container(
-//               padding: EdgeInsets.all(10),
-//               height: 50,
-//               width: 250,
-//               decoration: BoxDecoration(
-//                   color: Colors.greenAccent, borderRadius: BorderRadius.circular(20)),
-//               // ignore: deprecated_member_use
-//               child: TextButton(
-//                 onPressed: () {
-                   
-//                 Navigator.of(context).push(
-//       MaterialPageRoute(builder: (context) =>  LoginScreen())
-     
-//                );
-              
-             
-//                 },
-//                 child: Text(
-//                   'Log Out',
-//                   style: TextStyle(color: Colors.white, fontSize: 25),
-                  
-//                 ),
-//               ),
-//             ),
-
-//             ],
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
-
-
-
-
