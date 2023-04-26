@@ -20,7 +20,7 @@ class _CreateAccountState extends State<CreateAccount> {
     return Scaffold(
       backgroundColor: Color.fromARGB(57, 7, 204, 178),
       appBar: AppBar(
-         title: Text(
+        title: Text(
           "Hy-Diabemate",
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -29,16 +29,18 @@ class _CreateAccountState extends State<CreateAccount> {
           ),
         ),
         centerTitle: true,
-         backgroundColor: Color.fromARGB(255, 74, 102, 95),
+        backgroundColor: Color.fromARGB(255, 74, 102, 95),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox( 
-              child:Text("Create Account",
-               style: TextStyle(color: Color.fromARGB(255, 241, 231, 231),fontSize: 40),
-               )),
+            SizedBox(
+                child: Text(
+              "Create Account",
+              style: TextStyle(
+                  color: Color.fromARGB(255, 241, 231, 231), fontSize: 40),
+            )),
             const SizedBox(
               height: 30.0,
             ),
@@ -46,17 +48,20 @@ class _CreateAccountState extends State<CreateAccount> {
               width: MediaQuery.of(context).size.width / 2,
               child: TextField(
                 controller: _emailController,
-                decoration:  InputDecoration(hintText: 'Email',
-                hintStyle: TextStyle(fontSize: 20.0, color: Color.fromARGB(225, 179, 181, 185)),
-                enabledBorder: OutlineInputBorder(
-                   borderSide:
-          BorderSide(width: 3, color: Colors.greenAccent), //<-- SEE HERE
-      borderRadius: BorderRadius.circular(50.0),
-                ),
+                decoration: InputDecoration(
+                  hintText: 'Email',
+                  hintStyle: TextStyle(
+                      fontSize: 20.0,
+                      color: Color.fromARGB(225, 179, 181, 185)),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                        width: 3, color: Colors.greenAccent), //<-- SEE HERE
+                    borderRadius: BorderRadius.circular(50.0),
+                  ),
                 ),
                 style: TextStyle(
-                    color: Colors.white,
-                  ),
+                  color: Colors.white,
+                ),
               ),
             ),
             const SizedBox(
@@ -67,18 +72,19 @@ class _CreateAccountState extends State<CreateAccount> {
               child: TextField(
                 controller: _passwordController,
                 obscureText: true,
-                decoration:  InputDecoration(
-                  hintText: 'Password',
-                  hintStyle: TextStyle(fontSize: 20.0, color: Color.fromARGB(225, 179, 181, 185)),
-                  enabledBorder: OutlineInputBorder(
-                     borderSide:
-          BorderSide(width: 3, color: Colors.greenAccent), //<-- SEE HERE
-      borderRadius: BorderRadius.circular(50.0),
-                  )
-                ),
+                decoration: InputDecoration(
+                    hintText: 'Password',
+                    hintStyle: TextStyle(
+                        fontSize: 20.0,
+                        color: Color.fromARGB(225, 179, 181, 185)),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          width: 3, color: Colors.greenAccent), //<-- SEE HERE
+                      borderRadius: BorderRadius.circular(50.0),
+                    )),
                 style: TextStyle(
-                    color: Colors.white,
-                  ),
+                  color: Colors.white,
+                ),
               ),
             ),
             const SizedBox(
@@ -86,8 +92,8 @@ class _CreateAccountState extends State<CreateAccount> {
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-    primary: Colors.greenAccent, // Background color
-  ),
+                primary: Colors.greenAccent, // Background color
+              ),
               onPressed: () async {
                 final message = await AuthService().registration(
                   email: _emailController.text,
@@ -95,7 +101,7 @@ class _CreateAccountState extends State<CreateAccount> {
                 );
                 if (message!.contains('Success')) {
                   Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) =>  dummy()));
+                      MaterialPageRoute(builder: (context) => dummy()));
                 }
                 ScaffoldMessenger.of(context).showSnackBar(
                   SnackBar(
