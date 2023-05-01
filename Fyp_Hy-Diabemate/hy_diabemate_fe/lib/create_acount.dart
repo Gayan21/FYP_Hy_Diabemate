@@ -15,6 +15,7 @@ class _CreateAccountState extends State<CreateAccount> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
+  bool _isCreatingAccount = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,21 +95,63 @@ class _CreateAccountState extends State<CreateAccount> {
               style: ElevatedButton.styleFrom(
                 primary: Colors.greenAccent, // Background color
               ),
-              onPressed: () async {
-                final message = await AuthService().registration(
-                  email: _emailController.text,
-                  password: _passwordController.text,
-                );
-                if (message!.contains('Success')) {
-                  Navigator.of(context).pushReplacement(
-                      MaterialPageRoute(builder: (context) => dummy()));
-                }
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(message),
-                  ),
-                );
-              },
+              onPressed: _isCreatingAccount
+                  ? null
+                  : () async {
+                      setState(() {
+                        _isCreatingAccount = true;
+                      });
+
+                      final message = await AuthService().registration(
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                      );
+
+                      setState(() {
+                        _isCreatingAccount = false;
+                      });
+
+                      if (message!.contains('Success')) {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (context) => dummy(),
+                          ),
+                        );
+                      } else {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text(
+                                "Registration Failed",
+                                style: TextStyle(
+                                  color: Colors.red,
+                                ),
+                              ),
+                              content: Text(
+                                message,
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Text(
+                                    "OK",
+                                    style: TextStyle(
+                                      color: Colors.green,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            );
+                          },
+                        );
+                      }
+                    },
               child: const Text('Create Account'),
             ),
           ],
