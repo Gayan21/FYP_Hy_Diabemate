@@ -187,6 +187,7 @@ class _ProfileScreenState extends State<Profile>
       child: Scaffold(
         backgroundColor: Color.fromARGB(57, 7, 204, 178),
         appBar: AppBar(
+           centerTitle: true,
           backgroundColor: Color.fromARGB(255, 74, 102, 95),
           leading: BackButton(
             onPressed: () => Navigator.of(context).pop(),
@@ -317,61 +318,160 @@ Container(
         ),
       ),
       SizedBox(height: 16),
-      Text(
-        'Status: Positive and Negative',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 16,
-          color: Colors.white,
-        ),
-      ),
+      // Text(
+      //   'Status: Positive and Negative',
+      //   style: TextStyle(
+      //     fontWeight: FontWeight.bold,
+      //     fontSize: 16,
+      //     color: Colors.white,
+      //   ),
+      // ),
       SizedBox(height: 16),
-      DataTable(
-        columns: [
-          DataColumn(
-            label: Text('Date', style: TextStyle(color: Colors.white)),
-          ),
-          DataColumn(
-            label: Text('Status', style: TextStyle(color: Colors.white)),
-          ),
-        ],
-        rows: [
-          DataRow(cells: [
-            DataCell(Text('2022-01-01', style: TextStyle(color: Colors.white))),
-            DataCell(
-              Row(
-                children: [
-                  Icon(
-                    Icons.check_circle,
-                    color: Colors.green,
-                  ),
-                  SizedBox(width: 8),
-                  Text('Positive', style: TextStyle(color: Colors.white)),
-                ],
+      Card(
+        color: Colors.blueGrey,
+        margin: EdgeInsets.all(8),
+        elevation: 4,
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: DataTable(
+            columns: [
+              DataColumn(
+                label: Text('Date', style: TextStyle(color: Colors.black)),
               ),
-            ),
-          ]),
-          DataRow(cells: [
-            DataCell(Text('2022-01-02', style: TextStyle(color: Colors.white))),
-            DataCell(
-              Row(
-                children: [
-                  Icon(
-                    Icons.cancel,
-                    color: Colors.red,
-                  ),
-                  SizedBox(width: 8),
-                  Text('Negative', style: TextStyle(color: Colors.white)),
-                ],
+              DataColumn(
+                label: Text('Status', style: TextStyle(color: Colors.black)),
               ),
-            ),
-          ]),
-          // Add more rows for additional history data
-        ],
+            ],
+            rows: [
+              DataRow(cells: [
+                DataCell(Text('2022-01-01', style: TextStyle(color: Colors.black))),
+                DataCell(
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.check_circle,
+                        color: Colors.green,
+                      ),
+                      SizedBox(width: 8),
+                      Text('Positive', style: TextStyle(color: Colors.black)),
+                    ],
+                  ),
+                ),
+              ]),
+              DataRow(cells: [
+                DataCell(Text('2022-01-02', style: TextStyle(color: Colors.black))),
+                DataCell(
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.cancel,
+                        color: Colors.red,
+                      ),
+                      SizedBox(width: 8),
+                      Text('Negative', style: TextStyle(color: Colors.black)),
+                    ],
+                  ),
+                ),
+              ]),
+                  DataRow(cells: [
+                DataCell(Text('2022-01-01', style: TextStyle(color: Colors.black))),
+                DataCell(
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.check_circle,
+                        color: Colors.green,
+                      ),
+                      SizedBox(width: 8),
+                      Text('Positive', style: TextStyle(color: Colors.black)),
+                    ],
+                  ),
+                ),
+              ]),
+               DataRow(cells: [
+                DataCell(Text('2022-01-02', style: TextStyle(color: Colors.black))),
+                DataCell(
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.cancel,
+                        color: Colors.red,
+                      ),
+                      SizedBox(width: 8),
+                      Text('Negative', style: TextStyle(color: Colors.black)),
+                    ],
+                  ),
+                ),
+              ]),
+              DataRow(cells: [
+                DataCell(Text('2022-01-01', style: TextStyle(color: Colors.black))),
+                DataCell(
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.check_circle,
+                        color: Colors.green,
+                      ),
+                      SizedBox(width: 8),
+                      Text('Positive', style: TextStyle(color: Colors.black)),
+                    ],
+                  ),
+                ),
+              ]),
+              DataRow(cells: [
+                DataCell(Text('2022-01-02', style: TextStyle(color: Colors.black))),
+                DataCell(
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.cancel,
+                        color: Colors.red,
+                      ),
+                      SizedBox(width: 8),
+                      Text('Negative', style: TextStyle(color: Colors.black)),
+                    ],
+                  ),
+                ),
+              ]),
+               DataRow(cells: [
+                DataCell(Text('2022-01-01', style: TextStyle(color: Colors.black))),
+                DataCell(
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.check_circle,
+                        color: Colors.green,
+                      ),
+                      SizedBox(width: 8),
+                      Text('Positive', style: TextStyle(color: Colors.black)),
+                    ],
+                  ),
+                ),
+              ]),
+              DataRow(cells: [
+                DataCell(Text('2022-01-02', style: TextStyle(color: Colors.black))),
+                DataCell(
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.cancel,
+                        color: Colors.red,
+                      ),
+                      SizedBox(width: 8),
+                      Text('Negative', style: TextStyle(color: Colors.black)),
+                    ],
+                  ),
+                ),
+              ]),
+              // Add more rows for additional history data
+            ],
+          ),
+        ),
       ),
     ],
   ),
 )
+
 
 
             // Center(
