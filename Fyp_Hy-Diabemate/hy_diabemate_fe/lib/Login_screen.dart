@@ -137,6 +137,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hy_diabemate_fe/Models/auth_service.dart';
+import 'package:hy_diabemate_fe/Prediction_page.dart';
 import 'package:hy_diabemate_fe/create_acount.dart';
 import 'package:hy_diabemate_fe/dummy.dart';
 
@@ -154,32 +155,99 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _isLoading = false;
 
   void _showErrorDialog(String message) {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text('An Error Occurred!'),
-        content: Text(message),
-        actions: <Widget>[
-          TextButton(
-            child: Text('Okay'),
+  showDialog(
+  context: context,
+  builder: (ctx) => Dialog(
+    backgroundColor: Colors.white,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16),
+    ),
+    child: Container(
+      padding: EdgeInsets.all(16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'An Error Occurred!',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              color: Colors.red,
+            ),
+          ),
+          SizedBox(height: 16),
+          Text(
+            message,
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(height: 16),
+          ElevatedButton(
+            child: Text(
+              'Okay',
+              style: TextStyle(fontSize: 16),
+            ),
             onPressed: () {
               Navigator.of(ctx).pop();
             },
+            style: ElevatedButton.styleFrom(
+              primary: Colors.red,
+              onPrimary: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: 12,
+                horizontal: 24,
+              ),
+            ),
           ),
         ],
       ),
-    );
+    ),
+  ),
+);
+
+
   }
 
   void _showSuccessDialog() {
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: Text('Success!'),
-        content: Text('You have successfully logged in.'),
-        actions: <Widget>[
-          TextButton(
-            child: Text('Okay'),
+showDialog(
+  context: context,
+  builder: (ctx) => Dialog(
+    backgroundColor: Colors.white,
+    shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(16),
+    ),
+    child: Container(
+      padding: EdgeInsets.all(16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(
+            'Success!',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+              color: Colors.green,
+            ),
+          ),
+          SizedBox(height: 16),
+          Text(
+            'You have successfully logged in.',
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.black,
+            ),
+          ),
+          SizedBox(height: 16),
+          ElevatedButton(
+            child: Text(
+              'Okay',
+              style: TextStyle(fontSize: 16),
+            ),
             onPressed: () {
               Navigator.of(ctx).pop();
               Navigator.of(context).pushReplacement(
@@ -188,10 +256,25 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               );
             },
+            style: ElevatedButton.styleFrom(
+              primary: Colors.green,
+              onPrimary: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(8),
+              ),
+              padding: EdgeInsets.symmetric(
+                vertical: 12,
+                horizontal: 24,
+              ),
+            ),
           ),
         ],
       ),
-    );
+    ),
+  ),
+);
+
+
   }
 
   @override
