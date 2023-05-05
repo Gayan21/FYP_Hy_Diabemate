@@ -4,7 +4,10 @@ class SymptomsDescriptionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Color.fromARGB(57, 7, 204, 178),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 74, 102, 95),
+        centerTitle: true,
         title: Text('Symptoms Description'),
       ),
       body: SingleChildScrollView(
