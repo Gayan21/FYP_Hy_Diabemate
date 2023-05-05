@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:hy_diabemate_fe/About.dart';
 import 'package:hy_diabemate_fe/Profile.dart';
+import 'package:hy_diabemate_fe/symptoms_page.dart';
 
 class dummy extends StatefulWidget {
   @override
@@ -123,13 +124,13 @@ print(response.body);
                             onPressed: ()=> Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder:(context)=> Profile(),
+                                builder:(context)=> SymptomsDescriptionPage(),
                               ),
                             ),
                             icon: Icon(Icons.apps_rounded),
                           ),
                           title: Text(
-                            "About App",
+                            "Symptoms page",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 20.0,
@@ -145,7 +146,7 @@ print(response.body);
             ),
             icon: Icon(
               
-              Icons.contacts,
+              Icons.help,
               color: Colors.white,
               size: 35.0,
             ),
@@ -318,10 +319,10 @@ print(response.body);
   ),
   //         onPressed: _predict,
          onPressed: () async {
-    final prediction = await _predict();
+    // final prediction = await _predict();
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => About(prediction: _prediction)),
+      MaterialPageRoute(builder: (context) => About(prediction: _prediction,)),
     );
   },
           child: Text('Predict'),
