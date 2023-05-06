@@ -151,7 +151,10 @@ class _ProfileScreenState extends State<Profile>
                   const SizedBox(height: 20.0),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.greenAccent, // Background color
+                      primary: Colors.greenAccent, 
+                      shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),// Background color
                     ),
                     onPressed: _updateProfile,
                     child: const Text('Update Profile'),
@@ -159,7 +162,10 @@ class _ProfileScreenState extends State<Profile>
                   const SizedBox(height: 20.0),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.greenAccent, // Background color
+                      primary: Colors.greenAccent, 
+                      shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),// Background color
                     ),
                     onPressed: () {
                       FirebaseAuth.instance.signOut();
