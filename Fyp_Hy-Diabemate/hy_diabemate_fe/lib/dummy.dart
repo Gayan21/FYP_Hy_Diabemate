@@ -29,7 +29,9 @@ class _DiabetesPredictorState extends State<dummy> {
   final obesityController = TextEditingController();
 
   String _prediction = '';
+  
 
+  
   Future<void> _predict() async {
     final response = await http.post(
       Uri.parse('http://10.0.2.2:5000/predict'),//http://127.0.0.1:5000/predict
@@ -61,8 +63,11 @@ print(response.body);
 
     setState(() {
        _prediction = result['prediction'].toString();
+       
     });
   }
+
+ 
 
   @override
   Widget build(BuildContext context) {
@@ -319,6 +324,7 @@ print(response.body);
   ),
   //         onPressed: _predict,
          onPressed: () async {
+         
     // final prediction = await _predict();
     Navigator.push(
       context,
