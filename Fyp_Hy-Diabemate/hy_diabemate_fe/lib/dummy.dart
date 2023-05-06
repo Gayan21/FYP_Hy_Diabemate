@@ -165,9 +165,14 @@ print(response.body);
         child: Column(
           
           children: [
+             const SizedBox(
+              height: 30.0,
+            ),
            SizedBox( 
-              child:Text("Diabetic  Predictor",
-               style: TextStyle(color: Color.fromARGB(255, 12, 8, 8),fontSize: 25),
+              child:Text("Please provide your details",
+               style: TextStyle(color: Color.fromARGB(255, 12, 8, 8),fontSize: 20,
+               fontFamily: "Castoro Titling",
+               fontWeight: FontWeight.bold,),
                )),
             const SizedBox(
               height: 30.0,
@@ -321,6 +326,9 @@ print(response.body);
         ElevatedButton(
           style: ElevatedButton.styleFrom(
     primary: Colors.greenAccent, // Background color
+     shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
   ),
   //         onPressed: _predict,
          onPressed: () async {
