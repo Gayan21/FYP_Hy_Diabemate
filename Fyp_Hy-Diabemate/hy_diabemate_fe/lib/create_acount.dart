@@ -46,7 +46,7 @@ class _CreateAccountState extends State<CreateAccount> {
               height: 30.0,
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
+              width: 300,
               child: TextField(
                 controller: _emailController,
                 decoration: InputDecoration(
@@ -69,7 +69,7 @@ class _CreateAccountState extends State<CreateAccount> {
               height: 30.0,
             ),
             SizedBox(
-              width: MediaQuery.of(context).size.width / 2,
+              width: 300,
               child: TextField(
                 controller: _passwordController,
                 obscureText: true,
@@ -92,9 +92,14 @@ class _CreateAccountState extends State<CreateAccount> {
               height: 30.0,
             ),
             ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.greenAccent, // Background color
-              ),
+               style: ElevatedButton.styleFrom(
+                  primary: Colors.greenAccent,
+                  onPrimary: Colors.black,
+                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                ),
               onPressed: _isCreatingAccount
                   ? null
                   : () async {
