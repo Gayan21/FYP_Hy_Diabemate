@@ -86,7 +86,7 @@ class _ProfileScreenState extends State<Profile>
               child: Column(
                 // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const Icon(Icons.person, size: 200.0),
+                  const Icon(Icons.person, size: 200.0, color: Colors.white),
                   const SizedBox(height: 20.0),
                   Text(
                     'Email: ${currentUser?.email ?? 'Unknown'}',
@@ -97,7 +97,7 @@ class _ProfileScreenState extends State<Profile>
                   ),
                   const SizedBox(height: 20.0),
                   SizedBox(
-                    width: 350,
+                    width: 300,
                     child: TextFormField(
                       initialValue: _name,
                       decoration: InputDecoration(
@@ -123,7 +123,7 @@ class _ProfileScreenState extends State<Profile>
                   ),
                   const SizedBox(height: 20.0),
                   SizedBox(
-                    width: 350,
+                    width: 300,
                     child: TextFormField(
                       initialValue: _age.toString(),
                       keyboardType: TextInputType.number,
@@ -148,30 +148,41 @@ class _ProfileScreenState extends State<Profile>
                       },
                     ),
                   ),
-                  const SizedBox(height: 20.0),
+                  const SizedBox(height: 30.0),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.greenAccent, 
+                      primary: Colors.greenAccent,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                       shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                  ),// Background color
+                        borderRadius: BorderRadius.circular(50),
+                      ), // Background color
                     ),
                     onPressed: _updateProfile,
-                    child: const Text('Update Profile'),
+                    child: const Text(
+                      'Update Profile',
+                      style: TextStyle(
+                        color: Colors.black,
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 20.0),
+                  const SizedBox(height: 30.0),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.greenAccent, 
+                      primary: Colors.greenAccent,
+                      padding:EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                       shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(50),
-                  ),// Background color
+                        borderRadius: BorderRadius.circular(50),
+                      ), // Background color
                     ),
                     onPressed: () {
                       FirebaseAuth.instance.signOut();
                       Navigator.of(context).popUntil((route) => route.isFirst);
                     },
-                    child: const Text('Log Out'),
+                    child: const Text('Log Out',
+                     style: TextStyle(
+                        color: Colors.black,
+                      ),),
                   ),
                 ],
               ),
@@ -240,31 +251,31 @@ class _ProfileScreenState extends State<Profile>
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: ()async {
-                            // Prompt the user to select whether the entry is positive or negative
-                bool isPositive = await showDialog(
-                  context: context,
-                  builder: (context) => AlertDialog(
-                    title: Text('Select Entry Status'),
-                    content: Text('Is the entry positive or negative?'),
-                    actions: [
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, true),
-                        child: Text('Positive'),
-                      ),
-                      TextButton(
-                        onPressed: () => Navigator.pop(context, false),
-                        child: Text('Negative'),
-                      ),
-                    ],
-                  ),
-                );
-                // If the user selected a status, add a new entry to the history with the current date/time and the selected status
-                if (isPositive != null) {
-                  _addHistoryData(DateTime.now(), isPositive);
-                }
-              },
-              child: Text('Add New Entry'),
+                    onPressed: () async {
+                      // Prompt the user to select whether the entry is positive or negative
+                      bool isPositive = await showDialog(
+                        context: context,
+                        builder: (context) => AlertDialog(
+                          title: Text('Select Entry Status'),
+                          content: Text('Is the entry positive or negative?'),
+                          actions: [
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, true),
+                              child: Text('Positive'),
+                            ),
+                            TextButton(
+                              onPressed: () => Navigator.pop(context, false),
+                              child: Text('Negative'),
+                            ),
+                          ],
+                        ),
+                      );
+                      // If the user selected a status, add a new entry to the history with the current date/time and the selected status
+                      if (isPositive != null) {
+                        _addHistoryData(DateTime.now(), isPositive);
+                      }
+                    },
+                    child: Text('Add New Entry'),
                   ),
                 ],
               ),
