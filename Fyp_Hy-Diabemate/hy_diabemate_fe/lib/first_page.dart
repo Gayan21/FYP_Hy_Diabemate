@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:hy_diabemate_fe/History_page.dart';
+import 'package:hy_diabemate_fe/symptoms_page.dart';
 import 'package:hy_diabemate_fe/test.dart';
 
 import 'Login_screen.dart';
 
-
-
 class First_Page extends StatelessWidget {
   @override
- Widget build(BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(57, 7, 204, 178),
       appBar: AppBar(
@@ -36,11 +34,10 @@ class First_Page extends StatelessWidget {
               border: Border.all(color: Colors.black, width: 2.0),
               image: DecorationImage(
                 image: NetworkImage(
-                  "https://livingwithamplitude.com/wp-content/uploads/2021/11/november-3-diabetes-awareness-1024x972.jpg"
-                ),
+                    "https://en.pimg.jp/068/860/774/1/68860774.jpg"),
                 fit: BoxFit.cover,
               ),
-              borderRadius: BorderRadius.circular(50.0),
+              shape: BoxShape.circle, // Set the shape to circle
             ),
           ),
           Container(
@@ -61,12 +58,9 @@ class First_Page extends StatelessWidget {
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
                 primary: Colors.greenAccent,
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(
-                    width: 2, // thickness
-                    color: Colors.black, // color
-                  ),
-                  borderRadius: BorderRadius.circular(16.0),
+                  borderRadius: BorderRadius.circular(50),
                 ),
               ),
               child: Text(
