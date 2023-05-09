@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hy_diabemate_fe/History_page.dart';
 
 class Profile extends StatefulWidget {
+  
   const Profile({Key? key}) : super(key: key);
 
   @override
@@ -15,6 +16,10 @@ class _ProfileScreenState extends State<Profile>
   late String _name;
   late int _age;
   late TabController _tabController;
+   String prediction='';
+
+ 
+
 
   @override
   void initState() {
@@ -24,6 +29,7 @@ class _ProfileScreenState extends State<Profile>
     _age = currentUser?.metadata.creationTime?.year ?? DateTime.now().year;
     _tabController = TabController(length: 2, vsync: this);
     _addHistoryData(DateTime.now(), true);
+    prediction = '1';
   }
 
   void _updateProfile() {
@@ -187,99 +193,105 @@ class _ProfileScreenState extends State<Profile>
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    'Prediction History',
+Container(
+  padding: EdgeInsets.all(16),
+  child: Column(
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      Text(
+        'Prediction History',
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 24,
+          color: Colors.white,
+        ),
+      ),
+      SizedBox(height: 16),
+Card(
+  color: Colors.black,
+  margin: EdgeInsets.all(8),
+  elevation: 4,
+  child: Padding(
+    padding: EdgeInsets.all(16),
+    child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'Test Results',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20.0,
+            color: Colors.white,
+          ),
+        ),
+        SizedBox(height: 16),
+        Table(
+          border: TableBorder.all(color: Colors.black),
+          columnWidths: {
+            0: FlexColumnWidth(1),
+            1: FlexColumnWidth(1),
+          },
+          children: [
+            TableRow(children: [
+              TableCell(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: Text(
+                    'Prediction',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 24,
+                      fontSize: 16.0,
                       color: Colors.white,
                     ),
                   ),
-                  SizedBox(height: 16),
-                  SizedBox(height: 16),
-                  Card(
-                    color: Colors.grey[200],
-                    margin: EdgeInsets.all(8),
-                    elevation: 4,
-                    child: Padding(
-                      padding: EdgeInsets.all(16),
-                      child: DataTable(
-                        columns: [
-                          DataColumn(
-                            label: Text('Date',
-                                style: TextStyle(color: Colors.black)),
-                          ),
-                          DataColumn(
-                            label: Text('Status',
-                                style: TextStyle(color: Colors.black)),
-                          ),
-                        ],
-                        rows: _historyData
-                            .map((data) => DataRow(cells: [
-                                  DataCell(Text(
-                                      '${data['dateTime'].toString()}',
-                                      style: TextStyle(color: Colors.black))),
-                                  DataCell(
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          data['isPositive']
-                                              ? Icons.check_circle
-                                              : Icons.cancel,
-                                          color: data['isPositive']
-                                              ? Colors.green
-                                              : Colors.red,
-                                        ),
-                                        SizedBox(width: 8),
-                                        Text(
-                                            data['isPositive']
-                                                ? 'Positive'
-                                                : 'Negative',
-                                            style:
-                                                TextStyle(color: Colors.black)),
-                                      ],
-                                    ),
-                                  ),
-                                ]))
-                            .toList(),
+                ),
+              ),
+              TableCell(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: RichText(
+                    text: TextSpan(
+                      text: '${this.prediction == '1' ? 'You might have Type 1 diabetes. Please consult with a Doctor.' : this.prediction == '2' ? 'You might have diabetes. Please consult with a Doctor.' : 'Hurray! You do not have Diabetes.'}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Castoro Titling',
+                        fontSize: 15.0,
+                        color: this.prediction == '1'
+                            ? Colors.red
+                            : this.prediction == '2'
+                                ? Colors.yellow
+                                : Color.fromARGB(255, 2, 104, 6),
                       ),
+                      children: [
+                        TextSpan(
+                          text: '\nDate & time: ${DateTime.now().toString()}',
+                          style: TextStyle(
+                            fontWeight: FontWeight.normal,
+                            fontSize: 16.0,
+                            color: Colors.grey[600],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      // Prompt the user to select whether the entry is positive or negative
-                      bool isPositive = await showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                          title: Text('Select Entry Status'),
-                          content: Text('Is the entry positive or negative?'),
-                          actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, true),
-                              child: Text('Positive'),
-                            ),
-                            TextButton(
-                              onPressed: () => Navigator.pop(context, false),
-                              child: Text('Negative'),
-                            ),
-                          ],
-                        ),
-                      );
-                      // If the user selected a status, add a new entry to the history with the current date/time and the selected status
-                      if (isPositive != null) {
-                        _addHistoryData(DateTime.now(), isPositive);
-                      }
-                    },
-                    child: Text('Add New Entry'),
-                  ),
-                ],
+                ),
               ),
-            )
+            ]),
+          ],
+        ),
+      ],
+    ),
+  ),
+),
+
+     
+
+
+     
+    ],
+  ),
+),
+
 
             // Center(
             //   child: Text(
