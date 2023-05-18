@@ -2,7 +2,7 @@
 
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:hy_diabemate_fe/About.dart';
+import 'package:hy_diabemate_fe/Result.dart';
 import 'package:http/http.dart' as http;
 import 'package:hy_diabemate_fe/first_page.dart';
 import 'Profile.dart';
