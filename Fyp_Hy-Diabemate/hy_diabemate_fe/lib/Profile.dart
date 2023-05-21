@@ -1,10 +1,13 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hy_diabemate_fe/History_page.dart';
 
 class Profile extends StatefulWidget {
-  
-  const Profile({Key? key}) : super(key: key);
+  final String prediction;
+
+  Profile({required this.prediction});
+
+  // const Profile({Key? key}) : super(key: key);
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -16,10 +19,7 @@ class _ProfileScreenState extends State<Profile>
   late String _name;
   late int _age;
   late TabController _tabController;
-   String prediction='';
-
- 
-
+  //  String prediction='';
 
   @override
   void initState() {
@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<Profile>
     _age = currentUser?.metadata.creationTime?.year ?? DateTime.now().year;
     _tabController = TabController(length: 2, vsync: this);
     _addHistoryData(DateTime.now(), true);
-    prediction = '1';
+    // prediction = '1';
   }
 
   void _updateProfile() {
@@ -134,7 +134,7 @@ class _ProfileScreenState extends State<Profile>
                       initialValue: _age.toString(),
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
-                        labelText: 'Age',
+                        labelText: 'Year',
                         enabledBorder: OutlineInputBorder(
                           borderSide:
                               BorderSide(width: 3, color: Colors.greenAccent),
@@ -176,7 +176,8 @@ class _ProfileScreenState extends State<Profile>
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                       primary: Colors.greenAccent,
-                      padding:EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
                       ), // Background color
@@ -185,113 +186,114 @@ class _ProfileScreenState extends State<Profile>
                       FirebaseAuth.instance.signOut();
                       Navigator.of(context).popUntil((route) => route.isFirst);
                     },
-                    child: const Text('Log Out',
-                     style: TextStyle(
+                    child: const Text(
+                      'Log Out',
+                      style: TextStyle(
                         color: Colors.black,
-                      ),),
+                      ),
+                    ),
                   ),
                 ],
               ),
             ),
-Container(
-  padding: EdgeInsets.all(16),
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.center,
-    children: [
-      Text(
-        'Prediction History',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontSize: 24,
-          color: Colors.white,
-        ),
-      ),
-      SizedBox(height: 16),
-Card(
-  color: Colors.black,
-  margin: EdgeInsets.all(8),
-  elevation: 4,
-  child: Padding(
-    padding: EdgeInsets.all(16),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'Test Results',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20.0,
-            color: Colors.white,
-          ),
-        ),
-        SizedBox(height: 16),
-        Table(
-          border: TableBorder.all(color: Colors.black),
-          columnWidths: {
-            0: FlexColumnWidth(1),
-            1: FlexColumnWidth(1),
-          },
-          children: [
-            TableRow(children: [
-              TableCell(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text(
-                    'Prediction',
+            Container(
+              padding: EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text(
+                    'Prediction History',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 16.0,
+                      fontSize: 24,
                       color: Colors.white,
                     ),
                   ),
-                ),
-              ),
-              TableCell(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: RichText(
-                    text: TextSpan(
-                      text: '${this.prediction == '1' ? 'You might have Type 1 diabetes. Please consult with a Doctor.' : this.prediction == '2' ? 'You might have diabetes. Please consult with a Doctor.' : 'Hurray! You do not have Diabetes.'}',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Castoro Titling',
-                        fontSize: 15.0,
-                        color: this.prediction == '1'
-                            ? Colors.red
-                            : this.prediction == '2'
-                                ? Colors.yellow
-                                : Color.fromARGB(255, 2, 104, 6),
-                      ),
-                      children: [
-                        TextSpan(
-                          text: '\nDate & time: ${DateTime.now().toString()}',
-                          style: TextStyle(
-                            fontWeight: FontWeight.normal,
-                            fontSize: 16.0,
-                            color: Colors.grey[600],
+                  SizedBox(height: 16),
+                  Card(
+                    color: Colors.black,
+                    margin: EdgeInsets.all(8),
+                    elevation: 4,
+                    child: Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Test Results',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20.0,
+                              color: Colors.white,
+                            ),
                           ),
-                        ),
-                      ],
+                          SizedBox(height: 16),
+                          Table(
+                            border: TableBorder.all(color: Colors.black),
+                            columnWidths: {
+                              0: FlexColumnWidth(1),
+                              1: FlexColumnWidth(1),
+                            },
+                            children: [
+                              TableRow(children: [
+                                TableCell(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8.0),
+                                    child: Text(
+                                      'Prediction',
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 16.0,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                TableCell(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 8.0),
+                                    child: RichText(
+                                      text: TextSpan(
+                                        text:
+                                            '${widget.prediction == '1' ? 'Type 1 diabetes' : widget.prediction == '2' ? 'Positive' : 'Negative'}',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontFamily: 'Castoro Titling',
+                                          fontSize: 15.0,
+                                          color: widget.prediction == '1'
+                                              ? Colors.red
+                                              : widget.prediction == '2'
+                                                  ? Colors.yellow
+                                                  : Color.fromARGB(
+                                                      255, 2, 104, 6),
+                                        ),
+                                        children: [
+                                          TextSpan(
+                                            text:
+                                                '\nDate & time: ${DateTime.now().toString()}',
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.normal,
+                                              fontSize: 16.0,
+                                              color: Colors.grey[600],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ]),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ]),
-          ],
-        ),
-      ],
-    ),
-  ),
-),
-
-     
-
-
-     
-    ],
-  ),
-),
-
+            ),
 
             // Center(
             //   child: Text(
