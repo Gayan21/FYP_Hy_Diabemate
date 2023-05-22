@@ -177,7 +177,7 @@ class _ProfileScreenState extends State<Profile>
                     style: ElevatedButton.styleFrom(
                       primary: Colors.greenAccent,
                       padding:
-                          EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                          EdgeInsets.symmetric(horizontal: 70, vertical: 15),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
                       ), // Background color
