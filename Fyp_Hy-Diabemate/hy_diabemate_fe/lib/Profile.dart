@@ -17,7 +17,7 @@ class _ProfileScreenState extends State<Profile>
     with SingleTickerProviderStateMixin {
   List<Map<String, dynamic>> _historyData = [];
   late String _name;
-  late int _age;
+  late int _year;
   late TabController _tabController;
   //  String prediction='';
 
@@ -26,7 +26,7 @@ class _ProfileScreenState extends State<Profile>
     super.initState();
     final currentUser = FirebaseAuth.instance.currentUser;
     _name = currentUser?.displayName ?? 'Unknown';
-    _age = currentUser?.metadata.creationTime?.year ?? DateTime.now().year;
+    _year = currentUser?.metadata.creationTime?.year ?? DateTime.now().year;
     _tabController = TabController(length: 2, vsync: this);
     _addHistoryData(DateTime.now(), true);
     // prediction = '1';
@@ -131,7 +131,7 @@ class _ProfileScreenState extends State<Profile>
                   SizedBox(
                     width: 300,
                     child: TextFormField(
-                      initialValue: _age.toString(),
+                      initialValue: _year.toString(),
                       keyboardType: TextInputType.number,
                       decoration: InputDecoration(
                         labelText: 'Year',
@@ -149,7 +149,7 @@ class _ProfileScreenState extends State<Profile>
                       ),
                       onChanged: (value) {
                         setState(() {
-                          _age = int.parse(value);
+                          _year = int.parse(value);
                         });
                       },
                     ),
