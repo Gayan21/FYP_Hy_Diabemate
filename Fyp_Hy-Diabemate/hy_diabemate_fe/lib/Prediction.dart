@@ -322,7 +322,7 @@ class _DiabetesPredictorState extends State<Prediction> {
                 ),
                 //         onPressed: _predict,
                 onPressed: () async {
-                  final prediction = await _predict();
+                  // final prediction = await _predict();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
