@@ -1,21 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:hy_diabemate_fe/History_page.dart';
+import 'package:hy_diabemate_fe/symptoms_page.dart';
+import 'package:hy_diabemate_fe/test.dart';
 
 import 'Login_screen.dart';
-
-
 
 class First_Page extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(57, 7, 204, 178),
       appBar: AppBar(
-        backgroundColor: Colors.greenAccent,
+        backgroundColor: Color.fromARGB(255, 74, 102, 95),
+        centerTitle: true,
         title: Text(
-          "First page",
+          "Hy-Diabemate",
           style: TextStyle(
             fontWeight: FontWeight.bold,
-            // fontFamily: "courier new",
+            fontFamily: "Satisfy",
             fontSize: 35.0,
           ),
         ),
@@ -33,48 +34,52 @@ class First_Page extends StatelessWidget {
               border: Border.all(color: Colors.black, width: 2.0),
               image: DecorationImage(
                 image: NetworkImage(
-                    "https://livingwithamplitude.com/wp-content/uploads/2021/11/november-3-diabetes-awareness-1024x972.jpg"),
+                    "https://en.pimg.jp/068/860/774/1/68860774.jpg"),
+                fit: BoxFit.cover,
               ),
+              shape: BoxShape.circle, // Set the shape to circle
             ),
           ),
           Container(
             padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.02),
             child: Text(
-              "Help you to overcome the diabetese risk",
-               textAlign: TextAlign.center,
+              "Empowering you to conquer diabetes and live your best life.",
+              textAlign: TextAlign.center,
               style: TextStyle(
-                
-               
-                
-                fontSize: 26.0,
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontFamily: "Passion One",
+                fontSize: 25.0,
               ),
             ),
-            
-            
           ),
           Container(
-            padding:  EdgeInsets.all(15),  
-            child: MaterialButton( 
-              height: 40.0, 
-              minWidth: 40.0, 
-              color: Colors.greenAccent, 
-              textColor: Colors.white, 
-              child: new Text("Get Started"), 
+            padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.2),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.greenAccent,
+                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(50),
+                ),
+              ),
+              child: Text(
+                "Get Started",
+                style: TextStyle(
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
               onPressed: () {
                 Navigator.of(context).push(
-      MaterialPageRoute(builder: (context) =>  Login())
-     
-               );
-              
-              }, 
-              splashColor: Colors.redAccent,
-              )
-            
-            
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                );
+              },
+            ),
           ),
-      
-        ]
-    )
+        ],
+      ),
     );
   }
 }
